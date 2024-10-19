@@ -12,6 +12,7 @@ export default function InvoicesDetail() {
         <button>Düzenle</button>
         <button>Sil</button>
         <button>Ödendi olarak işaretle</button>
+        
       </div>
     </div>
   )
