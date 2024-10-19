@@ -6,6 +6,7 @@
   background-color: white;
   margin: 100px auto;
   justify-content: space-between;
+  border-radius: 10px;
 }
 
 .invoicedetailheader {
@@ -43,8 +44,23 @@
 .invoicedetailbtn {
   display: flex;
   gap: 8px;
-  
+
   button {
+    padding: 18px;
+    border-radius: 20px;
     border: none;
+    background: #F9FAFE;
+    color: rgba(126, 136, 195, 1);
   }
+}
+
+.invoicedetailbtn .dlt {
+  background: #EC5757;
+  color: white;
+  padding: 18px 25px;
+}
+
+.invoicedetailbtn .save {
+  color: white;
+  background: #7C5DFA;
 }

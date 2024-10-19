@@ -10,8 +10,8 @@ export default function InvoicesDetail() {
       </div>
       <div className="invoicedetailbtn">
         <button>Düzenle</button>
-        <button>Sil</button>
-        <button>Ödendi olarak işaretle</button>
+        <button className="dlt">Sil</button>
+        <button className="save">Ödendi olarak işaretle</button>
         
       </div>
     </div>
