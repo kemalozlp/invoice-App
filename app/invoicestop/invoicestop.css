@@ -1,0 +1,16 @@
+.invoicesTopCont {
+  width: 730px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  svg {
+    width: 12px;
+  }
+}
+
+.filterandNew{
+  display: flex;
+  gap: 40px;
+}
