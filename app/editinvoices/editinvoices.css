@@ -2,36 +2,20 @@ dialog {
   border: none;
   border-radius: 0 20px 20px 0;
   padding: 0;
-
-
 }
 
-.newInvoicesBtn {
-  border: none;
-  display: flex;
-  align-items: center;
-  color: white;
-  gap: 10px;
-  background: rgba(124, 93, 250, 1);
-  padding: 8px;
-  border-radius: 32px;
+.editBtn {
+  background: rgba(249, 250, 254, 1); 
   font-size: 15px;
   font-weight: 700;
   line-height: 15px;
   letter-spacing: -0.25px;
   text-align: left;
-
-
-  svg {
-    width: 32px;
-    height: 32px;
-    padding: 10px;
-    border-radius: 16px;
-    background: white;
-  }
+  color: rgba(126, 136, 195, 1);
+  padding: 15px 23px;
 }
 
-.newInvoicesForm {
+.editInvoicesForm {
   width: 616px;
   padding: 40px 56px;
   background: rgba(255, 255, 255, 1);
@@ -196,7 +180,8 @@ dialog {
 
 .formBtnList {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  gap: 16px;
 
   button {
     padding: 17px 24px;
@@ -211,28 +196,14 @@ dialog {
     color: rgba(126, 136, 195, 1);
   }
 
-  .saveBtns {
-    display: flex;
-    gap: 8px;
-
-    button:nth-child(1) {
-      background: rgba(55, 59, 83, 1);
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 15px;
-      letter-spacing: -0.25px;
-      text-align: left;
-      color: rgba(136, 142, 176, 1);
-    }
-
-    button:nth-child(2) {
-      background: rgba(124, 93, 250, 1);
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 15px;
-      letter-spacing: -0.25px;
-      text-align: left;
-      color: rgba(255, 255, 255, 1);
-    }
+  button:nth-child(2) {
+    background: rgba(124, 93, 250, 1);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
   }
+
 }

@@ -85,27 +85,4 @@
     display: grid;
   }
 
-  .newInvoicesBtn {
-    display: flex;
-    align-items: center;
-    color: white;
-    gap: 10px;
-    background: rgba(124, 93, 250, 1);
-    padding: 8px;
-    border-radius: 32px;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    text-align: left;
-
-
-    svg {
-      width: 32px;
-      height: 32px;
-      padding: 10px;
-      border-radius: 16px;
-      background: white;
-    }
-  }
 }

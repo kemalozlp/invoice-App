@@ -1,10 +1,11 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
-import "./newinvoices.css"
-import Image from "next/image";
-import { TopPlus } from "../invoicestop/topsvg";
 
-export default function NewInvoices() {
+import "./editinvoices.css"
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+
+export default function EditInvoices() {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -42,14 +43,11 @@ export default function NewInvoices() {
 
   return (
     <>
-      <button className="newInvoicesBtn"  onClick={() => handleClick()}>
-        <TopPlus />
-        <h2>Yeni Fatura</h2>
-      </button> 
+      <button onClick={() => handleClick()} className="editBtn">Düzenle</button>
       <dialog ref={(e) => (dialogRef.current = e)}>
 
-        <div className="newInvoicesForm">
-          <h1>Yeni Fatura</h1>
+        <div className="editInvoicesForm">
+          <h1>Düzenle <span> #XM9141</span></h1>
           <form >
             <div className="formsections">
               <div className="formsectionRow">
@@ -134,10 +132,7 @@ export default function NewInvoices() {
             </div>
             <div className="formBtnList">
               <button type="button" onClick={() => close()}>Vazgeç</button>
-              <div className="saveBtns">
-                <button type="button">Taslak Olarak Kaydet</button>
-                <button>Kaydet ve Gönder</button>
-              </div>
+              <button>Değişikliği Kaydet</button>
             </div>
           </form>
         </div>

@@ -1,3 +1,4 @@
+import NewInvoices from "../newinvoices/newinvoices"
 import "./invoicestop.css"
 import { DowndArrow, TopPlus } from "./topsvg"
 
@@ -26,10 +27,7 @@ export default function InvoicesTop() {
             </label>
           </div>
         </div>
-        <div className="newInvoicesBtn">
-          <TopPlus />
-          <h2>Yeni Fatura</h2>
-        </div>
+        <NewInvoices />
       </div>
     </div>
   )
