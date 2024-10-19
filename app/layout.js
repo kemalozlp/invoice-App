@@ -12,6 +12,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={leaguespartan.className}>
         <Header />
+    <html lang="tr">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>
