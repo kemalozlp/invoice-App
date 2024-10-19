@@ -1,0 +1,209 @@
+dialog {
+  border: none;
+  border-radius: 0 20px 20px 0;
+  padding: 0;
+}
+
+.editBtn {
+  background: rgba(249, 250, 254, 1); 
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  text-align: left;
+  color: rgba(126, 136, 195, 1);
+  padding: 15px 23px;
+}
+
+.editInvoicesForm {
+  width: 616px;
+  padding: 40px 56px;
+  background: rgba(255, 255, 255, 1);
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.5px;
+    text-align: left;
+    color: rgba(12, 14, 22, 1);
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+    color: rgba(124, 93, 250, 1);
+    margin-bottom: 24px;
+  }
+
+  input {
+    border: 1px solid rgba(223, 227, 250, 1);
+    padding: 17px 20px;
+    border-radius: 5px;
+  }
+}
+
+.formsections {
+  height: 670px;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.formsections::-webkit-scrollbar {
+  width: 8px;
+}
+
+.formsections::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.formsections::-webkit-scrollbar-thumb {
+  background: rgba(223, 227, 250, 1);
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.formsections::-webkit-scrollbar-thumb:hover {
+  background: rgb(165, 170, 199);
+  cursor: pointer;
+}
+
+.formsectionRow {
+  margin-bottom: 25px;
+  position: relative;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.375px;
+    text-align: left;
+    color: rgba(119, 127, 152, 1);
+    margin-bottom: 14px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.10000000149011612px;
+    text-align: left;
+    color: rgba(126, 136, 195, 1);
+  }
+
+  .citypostcountry {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    label {
+      width: 152px;
+    }
+  }
+
+  .dateterms {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    label {
+      width: 100%;
+    }
+
+    select {
+      border: 1px solid rgba(223, 227, 250, 1);
+      padding: 17px 20px;
+      border-radius: 5px;
+      appearance: none;
+    }
+  }
+
+  .featuresItem {
+    display: grid;
+    grid-template-columns: 30% 10% 30% 30%;
+
+    p {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 15px;
+      letter-spacing: -0.10000000149011612px;
+      text-align: left;
+      color: rgba(126, 136, 195, 1);
+      margin-bottom: 15px;
+    }
+
+  }
+}
+
+.featuresInputItem {
+  display: grid;
+  grid-template-columns: 25% 7% 25% 20% 6%;
+  align-items: center;
+  gap: 16px;
+
+  input {
+    height: 48px;
+    margin-bottom: 18px;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.addnewItemBtn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 24px;
+  background: rgba(249, 250, 254, 1);
+  text-align: center;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  text-align: center;
+  color: rgba(126, 136, 195, 1);
+}
+
+.formBtnList {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+
+  button {
+    padding: 17px 24px;
+    border-radius: 50px;
+    background: rgba(249, 250, 254, 1);
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+    color: rgba(126, 136, 195, 1);
+  }
+
+  button:nth-child(2) {
+    background: rgba(124, 93, 250, 1);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+  }
+
+}
