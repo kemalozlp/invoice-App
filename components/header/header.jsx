@@ -3,6 +3,11 @@ import "./header.css"
 
 export default function Header(){
   return(
-    <h1>Header</h1>
+   <div className="invoice-item">
+    <div className="invoive-item-header">
+      <h2>Invoice</h2>
+    </div>
+    
+   </div>
   )
 }
