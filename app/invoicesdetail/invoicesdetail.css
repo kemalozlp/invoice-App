@@ -18,8 +18,7 @@
   li {
     background-color: #FFF9F0;
     padding: 14px;
-    border-radius: 10px;
-    font-family: League Spartan;
+    border-radius: 10px; 
     font-size: 15px;
     font-weight: 700;
     line-height: 15px;
@@ -29,8 +28,7 @@
   }
 
   p {
-    width: 35px;
-    font-family: League Spartan;
+    width: 35px; 
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
@@ -43,11 +41,12 @@
 
 .invoicedetailbtn {
   display: flex;
+  align-items: center;
   gap: 8px;
 
   button {
-    padding: 18px;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 50px;
     border: none;
     background: #F9FAFE;
     color: rgba(126, 136, 195, 1);
@@ -57,10 +56,11 @@
 .invoicedetailbtn .dlt {
   background: #EC5757;
   color: white;
-  padding: 18px 25px;
+  padding: 10px 20px;
 }
 
 .invoicedetailbtn .save {
   color: white;
+  padding: 10px 20px;
   background: #7C5DFA;
 }

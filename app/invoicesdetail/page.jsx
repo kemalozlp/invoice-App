@@ -1,3 +1,4 @@
+import EditInvoices from "../editinvoices/editinvoices"
 import "./invoicesdetail.css"
 
 export default function InvoicesDetail() {
@@ -9,10 +10,10 @@ export default function InvoicesDetail() {
         <li>Pending</li>
       </div>
       <div className="invoicedetailbtn">
-        <button>Düzenle</button>
+        <EditInvoices />
         <button className="dlt">Sil</button>
         <button className="save">Ödendi olarak işaretle</button>
-        
+
       </div>
     </div>
   )
