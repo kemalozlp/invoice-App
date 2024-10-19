@@ -13,6 +13,18 @@ export default function InvoicesTop() {
         <div className="filter">
           <p>Duruma göre Filtrele </p>
           <DowndArrow />
+
+          <div className="filters">
+            <label htmlFor="draft">
+              <input type="checkbox" name="draft" id="" />Draft
+            </label>
+            <label htmlFor="pending">
+              <input type="checkbox" name="pending" id="" />Pending
+            </label>
+            <label htmlFor="paid">
+              <input type="checkbox" name="paid" id="" />Paid
+            </label>
+          </div>
         </div>
         <div className="newInvoicesBtn">
           <TopPlus />
