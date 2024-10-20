@@ -3,7 +3,7 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   gap: 24px;
   margin: 0 auto;
   justify-content: space-between;
@@ -13,8 +13,8 @@
 
 .back a {
   display: flex;
-  align-items: center;
-  justify-content: start;
+  justify-content: center;
+  align-items: start;
   gap: 23.66px;
   text-decoration: none;
 
@@ -98,6 +98,7 @@
 }
 
 .detailContent {
+  width: 808px;
   background-color: #ffffff;
   margin-top: 24px;
   box-shadow: 0px 10px 10px -10px #48549f1a;

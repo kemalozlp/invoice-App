@@ -8,7 +8,7 @@ export default function InvoicesDetail() {
   return (
     <div className="invoiceDetail">
       <div className="back">
-      <Link href={"/"}> <Image width={10} height={10} src={"/images/ok.png"}/> <p>Go Back</p> </Link>
+        <Link href={"/"}> <Image width={10} height={10} src={"/images/ok.png"} /> <p>Go Back</p> </Link>
       </div>
       <div className="detailHeader">
         <div className="invoicedetailheader">
@@ -28,7 +28,7 @@ export default function InvoicesDetail() {
             <p className="dctlBottom">Grafik Tasarım</p>
           </div>
           <div className="dctRight">
-           <p> 19 Union Terrace <br /> London <br /> E1 3EZ <br /> United Kingdom</p>
+            <p> 19 Union Terrace <br /> London <br /> E1 3EZ <br /> United Kingdom</p>
           </div>
         </div>
         <div className="dcMedium">
@@ -55,7 +55,6 @@ export default function InvoicesDetail() {
             <p>Gönderilen</p> <br />
             <h3>alexgrim@mail.com</h3>
           </div>
-          <div></div>
         </div>
         <div className="itemsContainer">
           <div className="column">
