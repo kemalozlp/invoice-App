@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "./newinvoices.css"
 import Image from "next/image";
-import { TopPlus } from "../invoicestop/topsvg";
+import { TopPlus } from "../invoicestop/topsvg"; 
  
 export default function NewInvoices() {
   const [itemList, setItemList] = useState([]);
@@ -14,11 +14,15 @@ export default function NewInvoices() {
     setItemList([...itemList, {
       id: additem,
       text: "text",
-      number: "number"
+      number: "number",
+      textplaceholder: "lütfen isim giriniz",
+      numberfirstplace:"ad",
+      numbersecond:"fiyat giriniz"
     }])
 
   }, [additem]);
   console.log(itemList);
+ 
 
   useEffect(() => {
     setItemList(itemList.filter(x => x.id !== selectedIndex));
@@ -112,9 +116,9 @@ export default function NewInvoices() {
                 {
                   itemList && itemList.map((x, i) =>
                     <div className="featuresInputItem">
-                      <input type={x.text} />
-                      <input type={x.number} />
-                      <input type={x.number} />
+                      <input type={x.text} placeholder={x.textplaceholder}/>
+                      <input type={x.number} placeholder={x.numberfirstplace}/>
+                      <input type={x.number} placeholder={x.numbersecond} />
                       <p></p>
                       <button type="button" onClick={() => setSelectedIndex(x.id)} ><Image src={"/images/cop.png"} width={12} height={16} /></button>
                     </div>)

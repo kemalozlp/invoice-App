@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./editinvoices.css"
 import Image from "next/image";
 import { TopPlus } from "../invoicestop/topsvg";
- 
+
 export default function NewInvoices() {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
@@ -14,7 +14,10 @@ export default function NewInvoices() {
     setItemList([...itemList, {
       id: additem,
       text: "text",
-      number: "number"
+      number: "number",
+      textplaceholder: "lütfen isim giriniz",
+      numberfirstplace: "ad",
+      numbersecond: "fiyat giriniz"
     }])
 
   }, [additem]);
@@ -29,7 +32,7 @@ export default function NewInvoices() {
 
   return (
     <>
-      <button className="newInvoicesBtn" onClick={() => setShow(true)}> 
+      <button className="newInvoicesBtn" onClick={() => setShow(true)}>
         <h2 >Düzenle</h2>
       </button>
 
@@ -64,9 +67,12 @@ export default function NewInvoices() {
 
             <div className="formsectionRow">
               <h4>Bill To</h4>
-              <label htmlFor="clientsname">Müşterinin Adı
-                <input type="text" name="clientsname" defaultValue={"19 Union Terrace"} />
+              <label htmlFor="browsers">Müşterinin Adı
               </label>
+              <input list="browsers" name="browser" id="browser" />
+              <datalist id="browsers">
+                <option value="Ahmet">Ahmet</option>
+              </datalist> 
               <label htmlFor="clientemail">Müşterinin Epostası
                 <input type="text" name="clientemail" defaultValue={"London"} />
               </label>
@@ -111,9 +117,9 @@ export default function NewInvoices() {
                 {
                   itemList && itemList.map((x, i) =>
                     <div className="featuresInputItem">
-                      <input type={x.text} />
-                      <input type={x.number} />
-                      <input type={x.number} />
+                      <input type={x.text} placeholder={x.textplaceholder} />
+                      <input type={x.number} placeholder={x.numberfirstplace} />
+                      <input type={x.number} placeholder={x.numbersecond} />
                       <p></p>
                       <button type="button" onClick={() => setSelectedIndex(x.id)} ><Image src={"/images/cop.png"} width={12} height={16} /></button>
                     </div>)
@@ -126,9 +132,9 @@ export default function NewInvoices() {
           </div>
           <div className="formBtnList" style={{
             display: show ? "flex" : "none"
-          }}> 
+          }}>
             <button type="button" onClick={() => setShow(false)}>Vazgeç</button>
-              <button>Kaydet ve Gönder</button> 
+            <button>Kaydet ve Gönder</button>
           </div>
         </form>
       </div>
