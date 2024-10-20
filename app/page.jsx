@@ -1,9 +1,10 @@
-import InvoicesTop from "./invoicestop/invoicestop";
+import InvoicesList from "../components/invoiceslist/InvoicesList";
+
  
 export default function Home() {
   return (
-   <div>
-    <InvoicesTop />
+   <div> 
+    <InvoicesList />
    </div>
   );
 }
