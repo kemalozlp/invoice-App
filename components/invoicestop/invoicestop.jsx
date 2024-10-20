@@ -3,12 +3,12 @@ import "./invoicestop.css"
 import { DowndArrow, TopPlus } from "./topsvg"
 
 
-export default function InvoicesTop() {
+export default function InvoicesTop({ length }) {
   return (
     <div className="invoicesTopCont">
       <div className="invoicesTopLogo">
         <h1>Invoices</h1>
-        <p>Toplam <span>7</span> fatura bulunmaktadır</p>
+        <p>Toplam <span>{length}</span> fatura bulunmaktadır</p>
       </div>
       <div className="filterandNew">
         <div className="filter">

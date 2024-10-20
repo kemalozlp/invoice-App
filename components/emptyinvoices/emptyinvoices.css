@@ -1,0 +1,50 @@
+.invoiceEmpty {
+  position: relative;
+  top: 77px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.emptyimg {
+  width: 241px;
+  margin: auto;
+  margin-top: 140px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    width: 350px;
+    margin-top: 66px;
+    font-family: League Spartan;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 22.08px;
+    letter-spacing: -0.75px;
+  }
+
+  p {
+    font-family: League Spartan;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.1px;
+    align-items: center;
+    margin-top: 23px;
+    color: rgba(136, 142, 176, 1);
+
+    span {
+      font-family: League Spartan;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.10000000149011612px;
+      text-align: center;
+      color: rgba(136, 142, 176, 1);
+    }
+  }
+
+}

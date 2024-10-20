@@ -1,23 +1,19 @@
-dialog {
+.newInvoicesBtn {
   border: none;
-  border-radius: 0 20px 20px 0;
-  padding: 0;
 }
 
-.editBtn {
-  background: rgba(249, 250, 254, 1); 
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 15px;
-  letter-spacing: -0.25px;
-  text-align: left;
-  color: rgba(126, 136, 195, 1);
-  padding: 15px 23px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.editInvoicesForm {
-  width: 616px;
-  padding: 40px 56px;
+.newInvoicesForm {  
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 109px;
+  opacity: 1;
   background: rgba(255, 255, 255, 1);
 
   h1 {
@@ -45,6 +41,7 @@ dialog {
     padding: 17px 20px;
     border-radius: 5px;
   }
+
 }
 
 .formsections {
@@ -53,30 +50,30 @@ dialog {
   overflow-x: hidden;
   margin-bottom: 20px;
   position: relative;
-}
 
+}
+ 
 .formsections::-webkit-scrollbar {
-  width: 8px;
-}
-
+  width: 10px;
+} 
 .formsections::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 20px;
 }
-
+ 
 .formsections::-webkit-scrollbar-thumb {
   background: rgba(223, 227, 250, 1);
-  border-radius: 10px;
-  margin: 20px;
+  border-radius: 20px;
 }
-
+ 
 .formsections::-webkit-scrollbar-thumb:hover {
-  background: rgb(165, 170, 199);
-  cursor: pointer;
+  background: #555;
 }
 
 .formsectionRow {
   margin-bottom: 25px;
   position: relative;
+
 
   h3 {
     font-size: 18px;
@@ -145,11 +142,27 @@ dialog {
   }
 }
 
+.formsectionRow:last-child {
+  padding-bottom: 20%;
+}
+
 .featuresInputItem {
   display: grid;
   grid-template-columns: 25% 7% 25% 20% 6%;
   align-items: center;
   gap: 16px;
+
+  input[type=number] {
+    all: unset; 
+    width: initial;
+    padding-inline: 5px;
+    height: 48px;
+    border: 1px solid rgba(223, 227, 250, 1);
+    border-radius: 5px;
+    position: relative;
+    top: -10px;
+  }
+
 
   input {
     height: 48px;
@@ -179,9 +192,14 @@ dialog {
 }
 
 .formBtnList {
+  background: white;
+  width: 100%;
+  padding: 10px;
   display: flex;
-  justify-content: end;
-  gap: 16px;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
   button {
     padding: 17px 24px;
@@ -196,14 +214,54 @@ dialog {
     color: rgba(126, 136, 195, 1);
   }
 
-  button:nth-child(2) {
-    background: rgba(124, 93, 250, 1);
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    text-align: left;
-    color: rgba(255, 255, 255, 1);
+  .saveBtns {
+    display: flex;
+    gap: 8px;
+
+    button:nth-child(1) {
+      background: rgba(55, 59, 83, 1);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.25px;
+      text-align: left;
+      color: rgba(136, 142, 176, 1);
+    }
+
+    button:nth-child(2) {
+      background: rgba(124, 93, 250, 1);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.25px;
+      text-align: left;
+      color: rgba(255, 255, 255, 1);
+    }
   }
 
+
+}
+
+.newInvoicesBtn {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  background: rgba(124, 93, 250, 1);
+  padding: 8px;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  text-align: left;
+
+
+  svg {
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    border-radius: 16px;
+    background: white;
+  }
 }

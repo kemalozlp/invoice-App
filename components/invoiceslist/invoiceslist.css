@@ -1,0 +1,57 @@
+.invoice {
+  position: relative;
+  top: 77px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  a{
+    text-decoration: none;
+  }
+}
+
+.invoiceİtem {
+  background-color: white;
+  width: 730px;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-radius: 10px;
+  
+  
+
+  h3 {
+    font-family: League Spartan;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.25px;
+    text-align: right;
+  }
+
+  p { 
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.10000000149011612px;
+    text-align: left;
+    color: rgba(133, 139, 178, 1);
+  }
+
+  li {
+    list-style-type: none;
+    text-transform: capitalize;
+    width: 104px;
+    padding: 14px; 
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+
+    border-radius: 10px;
+  }
+}
