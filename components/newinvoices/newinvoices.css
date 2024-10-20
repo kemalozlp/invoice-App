@@ -2,15 +2,19 @@
   border: none;
 }
 
-.newInvoicesForm {
-  height: 100%;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.newInvoicesForm {  
   position: absolute;
   overflow: hidden;
   top: 0;
-  left: 0;
+  left: 109px;
   opacity: 1;
   background: rgba(255, 255, 255, 1);
-
 
   h1 {
     font-size: 24px;
@@ -37,6 +41,7 @@
     padding: 17px 20px;
     border-radius: 5px;
   }
+
 }
 
 .formsections {
@@ -47,25 +52,20 @@
   position: relative;
 
 }
-
-/* width */
+ 
 .formsections::-webkit-scrollbar {
   width: 10px;
-}
-
-/* Track */
+} 
 .formsections::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 20px;
 }
-
-/* Handle */
+ 
 .formsections::-webkit-scrollbar-thumb {
   background: rgba(223, 227, 250, 1);
   border-radius: 20px;
 }
-
-/* Handle on hover */
+ 
 .formsections::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -73,11 +73,8 @@
 .formsectionRow {
   margin-bottom: 25px;
   position: relative;
- 
-  input{
-    width: 100%;  
-    margin-bottom: 15px;
-  }
+
+
   h3 {
     font-size: 18px;
     font-weight: 700;
@@ -92,7 +89,7 @@
     display: flex;
     flex-direction: column;
     gap: 9px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
@@ -155,6 +152,18 @@
   align-items: center;
   gap: 16px;
 
+  input[type=number] {
+    all: unset; 
+    width: initial;
+    padding-inline: 5px;
+    height: 48px;
+    border: 1px solid rgba(223, 227, 250, 1);
+    border-radius: 5px;
+    position: relative;
+    top: -10px;
+  }
+
+
   input {
     height: 48px;
     margin-bottom: 18px;
@@ -187,32 +196,50 @@
   width: 100%;
   padding: 10px;
   display: flex;
-  justify-content: end;
-  gap: 20px;
+  justify-content: space-around;
   position: absolute;
   bottom: 0;
   left: 0;
 
-  button:nth-child(1) {
-    background: rgba(55, 59, 83, 1);
+  button {
+    padding: 17px 24px;
+    border-radius: 50px;
+    background: rgba(249, 250, 254, 1);
+    border: none;
     font-size: 15px;
     font-weight: 700;
     line-height: 15px;
     letter-spacing: -0.25px;
     text-align: left;
-    color: rgba(136, 142, 176, 1);
+    color: rgba(126, 136, 195, 1);
   }
 
-  button:nth-child(2) {
-    background: rgba(124, 93, 250, 1);
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    text-align: left;
-    color: rgba(255, 255, 255, 1);
-    margin-right: 50px;
+  .saveBtns {
+    display: flex;
+    gap: 8px;
+
+    button:nth-child(1) {
+      background: rgba(55, 59, 83, 1);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.25px;
+      text-align: left;
+      color: rgba(136, 142, 176, 1);
+    }
+
+    button:nth-child(2) {
+      background: rgba(124, 93, 250, 1);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.25px;
+      text-align: left;
+      color: rgba(255, 255, 255, 1);
+    }
   }
+
+
 }
 
 .newInvoicesBtn {

@@ -1,7 +1,6 @@
 import Image from "next/image"
 import InvoicesTop from "../invoicestop/invoicestop"
-import "./emptyinvoices.css"
-import Link from "next/link"
+import "./emptyinvoices.css" 
 
 export default function EmptyInvoices() {
 

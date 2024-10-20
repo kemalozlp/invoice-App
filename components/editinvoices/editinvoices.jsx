@@ -1,8 +1,7 @@
 "use client"
 import { useContext, useEffect, useRef, useState } from "react";
 import "./editinvoices.css"
-import Image from "next/image";
-import { TopPlus } from "../invoicestop/topsvg";
+import Image from "next/image"; 
 
 export default function NewInvoices() {
   const [itemList, setItemList] = useState([]);
