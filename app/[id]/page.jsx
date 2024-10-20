@@ -1,5 +1,5 @@
 import Link from "next/link"
-import EditInvoices from "../editinvoices/editinvoices"
+import EditInvoices from "../../components/editinvoices/editinvoices"
 import "./invoicesdetail.css"
 import Image from "next/image"
 
