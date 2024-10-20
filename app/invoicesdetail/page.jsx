@@ -13,8 +13,9 @@ export default function InvoicesDetail() {
         <EditInvoices />
         <button className="dlt">Sil</button>
         <button className="save">Ödendi olarak işaretle</button>
-
       </div>
     </div>
+
+   
   )
 }
