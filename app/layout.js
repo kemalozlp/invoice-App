@@ -1,6 +1,7 @@
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/header";
+
 const leaguespartan = League_Spartan({ subsets: ['latin'] })
 export const metadata = {
   title: "İnvoice App",

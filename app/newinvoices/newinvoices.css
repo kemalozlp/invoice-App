@@ -1,40 +1,16 @@
-dialog {
-  border: none;
-  border-radius: 0 20px 20px 0;
-  padding: 0;
-
-
-}
-
 .newInvoicesBtn {
   border: none;
-  display: flex;
-  align-items: center;
-  color: white;
-  gap: 10px;
-  background: rgba(124, 93, 250, 1);
-  padding: 8px;
-  border-radius: 32px;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 15px;
-  letter-spacing: -0.25px;
-  text-align: left;
-
-
-  svg {
-    width: 32px;
-    height: 32px;
-    padding: 10px;
-    border-radius: 16px;
-    background: white;
-  }
 }
 
 .newInvoicesForm {
-  width: 616px;
-  padding: 40px 56px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  opacity: 1;
   background: rgba(255, 255, 255, 1);
+
 
   h1 {
     font-size: 24px;
@@ -69,30 +45,34 @@ dialog {
   overflow-x: hidden;
   margin-bottom: 20px;
   position: relative;
-}
 
+}
+/* width */
 .formsections::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
+/* Track */
 .formsections::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 20px;
 }
 
+/* Handle */
 .formsections::-webkit-scrollbar-thumb {
   background: rgba(223, 227, 250, 1);
-  border-radius: 10px;
-  margin: 20px;
+  border-radius: 20px;
 }
 
+/* Handle on hover */
 .formsections::-webkit-scrollbar-thumb:hover {
-  background: rgb(165, 170, 199);
-  cursor: pointer;
+  background: #555;
 }
 
 .formsectionRow {
   margin-bottom: 25px;
   position: relative;
+
 
   h3 {
     font-size: 18px;
@@ -161,6 +141,9 @@ dialog {
   }
 }
 
+.formsectionRow:last-child{
+  padding-bottom: 20%;}
+
 .featuresInputItem {
   display: grid;
   grid-template-columns: 25% 7% 25% 20% 6%;
@@ -195,8 +178,14 @@ dialog {
 }
 
 .formBtnList {
+  background: white;
+  width: 100%;
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
   button {
     padding: 17px 24px;
@@ -234,5 +223,31 @@ dialog {
       text-align: left;
       color: rgba(255, 255, 255, 1);
     }
+  }
+
+
+}
+
+.newInvoicesBtn {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  background: rgba(124, 93, 250, 1);
+  padding: 8px;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  text-align: left;
+
+
+  svg {
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    border-radius: 16px;
+    background: white;
   }
 }
