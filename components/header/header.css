@@ -1,0 +1,30 @@
+.invoice-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-color: #373B53;
+  border-radius:0 20px 20px 0 ;
+}
+
+.invoicedark {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+hr {
+  width: 103px;
+  margin: 0;
+  border: 2px solid rgba(73, 78, 110, 1);
+  
+}
+
+.ovalimg {
+  margin-bottom: 24px;
+}
