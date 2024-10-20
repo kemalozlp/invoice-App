@@ -5,8 +5,7 @@ import "./emptyinvoices.css"
 export default function EmptyInvoices() {
 
   return (
-    <div className="invoiceEmpty">
-      <InvoicesTop />
+    <div className="invoiceEmpty"> 
       <div className="emptyimg">
         <Image width={241.34} height={200} src={"/images/Flatline.png"} />
         <div className="emptytext">
