@@ -2,21 +2,13 @@ import Link from "next/link";
 import EmptyInvoices from "../emptyinvoices/emptyinvoices";
 import InvoicesTop from "../invoicestop/invoicestop";
 import "./invoiceslist.css"
+import { getInvoices } from "@/utils/invoicesService";
 
 export default async function InvoicesList() {
-  const response = await fetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoices", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      accept: "text/plain",
-      "Cache-Control": "no-cache", // Cache'yi devre dışı bırak
-    },
-    cache: "no-store", // fetch API ile cache'yi kapat
-  })
-  const data = await response.json();
-  console.log(data.length)
 
+  const data = await getInvoices();
 
+  console.log(data);
 
   return (
     <div className="invoice">
@@ -24,7 +16,7 @@ export default async function InvoicesList() {
       <div className="invoiceList">
         {
           data ? data.map((x, i) =>
-            <Link href={"/" + x.id}  key={i}>
+            <Link href={"/" + x.id} key={i}>
               <div className="invoiceİtem">
                 <h3>#{x.referanceNumber}</h3>
                 <p>{x.invoiceDate}</p>
