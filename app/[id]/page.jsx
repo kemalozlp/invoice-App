@@ -10,8 +10,6 @@ export default async function InvoicesDetail({ params }) {
 
   console.log(data);
 
-
-
   const filteredData = data.find(x => x.id === Number(params.id));
   console.log(filteredData, "assdasd");
 
@@ -35,7 +33,7 @@ export default async function InvoicesDetail({ params }) {
       <div className="detailContent" >
         <div className="dcTop">
           <div className="dctLeft">
-            <p className="dctlTop>"><h4>#{filteredData.referanceNumber}</h4></p>
+           <h4 className="dctlTop>">#{filteredData.referanceNumber}</h4>
             <p className="dctlBottom">{filteredData.description}</p>
           </div>
           <div className="dctRight">

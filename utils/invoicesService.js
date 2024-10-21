@@ -15,3 +15,9 @@ export const addInvoices = async () => {
   });
   return response;
 };
+
+
+export const getMe = async () => {
+  const response = await advancedFetch("https://invoiceapi.senihay.com/api/User/Me");
+  return response;
+};

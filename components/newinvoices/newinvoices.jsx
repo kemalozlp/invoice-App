@@ -2,27 +2,29 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "./newinvoices.css"
 import Image from "next/image";
-import { TopPlus } from "../invoicestop/topsvg"; 
- 
-export default function NewInvoices() {
+import { TopPlus } from "../invoicestop/topsvg";
+
+export default function NewInvoices({ data }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
 
+  console.log(data,"132123123123123213");
+  
   useEffect(() => {
     setItemList([...itemList, {
       id: additem,
       text: "text",
       number: "number",
       textplaceholder: "lütfen isim giriniz",
-      numberfirstplace:"ad",
-      numbersecond:"fiyat giriniz"
+      numberfirstplace: "ad",
+      numbersecond: "fiyat giriniz"
     }])
 
   }, [additem]);
   console.log(itemList);
- 
+
 
   useEffect(() => {
     setItemList(itemList.filter(x => x.id !== selectedIndex));
@@ -52,17 +54,17 @@ export default function NewInvoices() {
             <div className="formsectionRow">
               <h4>Bill From</h4>
               <label htmlFor="streetadress">Sokak Adresi
-                <input type="text" name="streetadress" defaultValue={"19 Union Terrace"} />
+                <input type="text" name="streetadress" defaultValue={data.street} />
               </label>
               <div className="citypostcountry">
                 <label htmlFor="city">Şehir
-                  <input type="text" name="citypostcountry" defaultValue={"London"} />
+                  <input type="text" name="citypostcountry" defaultValue={data.city} />
                 </label>
                 <label htmlFor="postcode">Posta Kodu
-                  <input type="text" name="postcode" defaultValue={"E1 3EZ"} />
+                  <input type="text" name="postcode" defaultValue={data.postCode} />
                 </label>
                 <label htmlFor="country">Ülke
-                  <input type="text" name="country" defaultValue={"United Kingdom"} />
+                  <input type="text" name="country" defaultValue={data.country} />
                 </label>
               </div>
             </div>
@@ -116,8 +118,8 @@ export default function NewInvoices() {
                 {
                   itemList && itemList.map((x, i) =>
                     <div className="featuresInputItem">
-                      <input type={x.text} placeholder={x.textplaceholder}/>
-                      <input type={x.number} placeholder={x.numberfirstplace}/>
+                      <input type={x.text} placeholder={x.textplaceholder} />
+                      <input type={x.number} placeholder={x.numberfirstplace} />
                       <input type={x.number} placeholder={x.numbersecond} />
                       <p></p>
                       <button type="button" onClick={() => setSelectedIndex(x.id)} ><Image src={"/images/cop.png"} width={12} height={16} /></button>
