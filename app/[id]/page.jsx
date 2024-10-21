@@ -2,21 +2,14 @@ import Link from "next/link"
 import EditInvoices from "../../components/editinvoices/editinvoices"
 import "./invoicesdetail.css"
 import Image from "next/image"
+import { getInvoices } from "@/utils/invoicesService";
 
 export default async function InvoicesDetail({ params }) {
 
-  const response = await fetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoices", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      accept: "text/plain",
-      "Cache-Control": "no-cache", // Cache'yi devre dışı bırak
-    },
-    cache: "no-store", // fetch API ile cache'yi kapat
-  })
-  const data = await response.json();
-  console.log(data.length)
-  console.log(typeof params.id);
+  const data = await getInvoices();
+
+  console.log(data);
+
 
 
   const filteredData = data.find(x => x.id === Number(params.id));
@@ -74,7 +67,7 @@ export default async function InvoicesDetail({ params }) {
             <h3>alexgrim@mail.com</h3>
           </div>
         </div>
-        {filteredData ? filteredData.items.map((x, i) => 
+        {filteredData ? filteredData.items.map((x, i) =>
 
           <div className="itemsContainer" key={i}>
             <div className="column">
