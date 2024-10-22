@@ -1,9 +1,9 @@
 "use client"
 import { useContext, useEffect, useRef, useState } from "react";
 import "./editinvoices.css"
-import Image from "next/image"; 
+import Image from "next/image";
 
-export default function NewInvoices() {
+export default function NewInvoices({ medata }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -49,17 +49,17 @@ export default function NewInvoices() {
             <div className="formsectionRow">
               <h4>Bill From</h4>
               <label htmlFor="streetadress">Sokak Adresi
-                <input type="text" name="streetadress" defaultValue={"19 Union Terrace"} />
+                <input type="text" name="streetadress" defaultValue={medata.street} />
               </label>
               <div className="citypostcountry">
                 <label htmlFor="city">Şehir
-                  <input type="text" name="citypostcountry" defaultValue={"London"} />
+                  <input type="text" name="citypostcountry" defaultValue={medata.city} />
                 </label>
                 <label htmlFor="postcode">Posta Kodu
-                  <input type="text" name="postcode" defaultValue={"E1 3EZ"} />
+                  <input type="text" name="postcode" defaultValue={medata.postCode} />
                 </label>
                 <label htmlFor="country">Ülke
-                  <input type="text" name="country" defaultValue={"United Kingdom"} />
+                  <input type="text" name="country" defaultValue={medata.country} />
                 </label>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function NewInvoices() {
               <input list="browsers" name="browser" id="browser" />
               <datalist id="browsers">
                 <option value="Ahmet">Ahmet</option>
-              </datalist> 
+              </datalist>
               <label htmlFor="clientemail">Müşterinin Epostası
                 <input type="text" name="clientemail" defaultValue={"London"} />
               </label>

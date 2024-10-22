@@ -1,34 +1,51 @@
 .invoice {
-  position: relative;
+  width: 730px; 
   top: 77px;
   display: flex;
   flex-direction: column;
+  gap: 64px;
+  margin: 0 auto;
+  padding-top: 50px;
+
+}
+
+.invoiceList {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+
 }
 
 .invoiceİtem {
+  color: black;
+  text-decoration: none;
   background-color: white;
   width: 730px;
   margin: 0 auto;
   padding: 30px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
   border-radius: 10px;
 
+
+
   h3 {
     font-family: League Spartan;
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 900;
     line-height: 24px;
     letter-spacing: -0.25px;
     text-align: right;
+    text-transform: uppercase;
+
+    span{
+      color: #7e88c3;
+    }
   }
 
   p {
-    font-family: League Spartan;
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
@@ -38,16 +55,16 @@
   }
 
   li {
+    list-style-type: none;
+    text-transform: capitalize;
     width: 104px;
     padding: 14px;
-    font-family: League Spartan;
     font-size: 15px;
     font-weight: 700;
     line-height: 15px;
     letter-spacing: -0.25px;
     text-align: left;
-    color: rgba(51, 214, 159, 1);
-    background-color: #F3FDFA;
+
     border-radius: 10px;
   }
 }
