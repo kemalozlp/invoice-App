@@ -1,9 +1,11 @@
+"use client"
 import NewInvoices from "../newinvoices/newinvoices"
 import "./invoicestop.css"
 import { DowndArrow, TopPlus } from "./topsvg"
 
 
-export default function InvoicesTop({ length }) {
+export default function InvoicesTop({ length, FilterData, medata }) {
+
   return (
     <div className="invoicesTopCont">
       <div className="invoicesTopLogo">
@@ -17,17 +19,17 @@ export default function InvoicesTop({ length }) {
 
           <div className="filters">
             <label htmlFor="draft">
-              <input type="checkbox" name="draft" id="" />Draft
+              <input type="checkbox" name="draft" onChange={(event) => FilterData(event, "2")} />Draft
             </label>
-            <label htmlFor="pending">
-              <input type="checkbox" name="pending" id="" />Pending
+            <label htmlFor="pending" >
+              <input type="checkbox" name="pending" onChange={(event) => FilterData(event, "0")} />Pending
             </label>
             <label htmlFor="paid">
-              <input type="checkbox" name="paid" id="" />Paid
+              <input type="checkbox" name="paid" onChange={(event) => FilterData(event, "1")} />Paid
             </label>
           </div>
         </div>
-        <NewInvoices />
+        <NewInvoices medata={medata} />
       </div>
     </div>
   )

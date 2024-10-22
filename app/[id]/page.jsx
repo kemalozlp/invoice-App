@@ -2,17 +2,17 @@ import Link from "next/link"
 import EditInvoices from "../../components/editinvoices/editinvoices"
 import "./invoicesdetail.css"
 import Image from "next/image"
-import { getInvoices } from "@/utils/invoicesService";
+import { getInvoices, getMe } from "@/utils/invoicesService";
 
 export default async function InvoicesDetail({ params }) {
 
-  const data = await getInvoices();
+  const data = await getInvoices(1 , 5);
 
+  const medata = await getMe();
+  console.log(data,"asdasdasdad");
   console.log(data);
 
-
-
-  const filteredData = data.find(x => x.id === Number(params.id));
+  const filteredData = data.invoices.find(x => x.id === Number(params.id));
   console.log(filteredData, "assdasd");
 
 
@@ -27,7 +27,7 @@ export default async function InvoicesDetail({ params }) {
           <li>Pending</li>
         </div>
         <div className="invoicedetailbtn">
-          <EditInvoices />
+          <EditInvoices  medata={medata} />
           <button className="dlt">Sil</button>
           <button className="save">Ödendi olarak işaretle</button>
         </div>
@@ -35,7 +35,7 @@ export default async function InvoicesDetail({ params }) {
       <div className="detailContent" >
         <div className="dcTop">
           <div className="dctLeft">
-            <p className="dctlTop>"><h4>#{filteredData.referanceNumber}</h4></p>
+           <h4 className="dctlTop>">#{filteredData.referanceNumber}</h4>
             <p className="dctlBottom">{filteredData.description}</p>
           </div>
           <div className="dctRight">
