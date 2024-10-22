@@ -19,14 +19,14 @@ export default function InvoicesTop({ length, FilterData, medata }) {
           <DowndArrow />
 
           <div className="filters">
-            <label htmlFor="draft">
-              <input type="checkbox" name="draft" onChange={(event) => FilterData(event, "2")} />Draft
+            <label htmlFor="draft" onChange={(event) => FilterData(event, "2")}>
+              <input type="checkbox" name="draft" id="draft" />Draft
             </label>
-            <label htmlFor="pending" >
-              <input type="checkbox" name="pending" onChange={(event) => FilterData(event, "0")} />Pending
+            <label htmlFor="pending" onChange={(event) => FilterData(event, "0")}  >
+              <input type="checkbox" name="pending" id="pending"/>Pending
             </label>
-            <label htmlFor="paid">
-              <input type="checkbox" name="paid" onChange={(event) => FilterData(event, "1")} />Paid
+            <label htmlFor="paid" onChange={(event) => FilterData(event, "1")} >
+              <input type="checkbox" name="paid" id="paid"/>Paid
             </label>
           </div>
         </div>
