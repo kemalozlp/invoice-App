@@ -15,6 +15,7 @@ export default function InvoicesTop({ length, FilterData, medata }) {
       <div className="filterandNew">
         <div className="filter">
           <p>Duruma göre Filtrele </p>
+          <p>Filtrele</p>
           <DowndArrow />
 
           <div className="filters">

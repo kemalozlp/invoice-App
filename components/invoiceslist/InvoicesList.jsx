@@ -6,13 +6,13 @@ import EmptyInvoices from "../emptyinvoices/emptyinvoices";
 import InvoicesTop from "../invoicestop/invoicestop";
 import "./invoiceslist.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";  
+import { useRouter } from "next/navigation";
 
 export default function InvoicesList({ data, datatotal, medata }) {
   const [datalist, setDataList] = useState(data.invoices);
   const [page, setPage] = useState(1);
 
-  const router = useRouter();  
+  const router = useRouter();
 
   function FilterData(event, statusdata) {
     if (event.target.checked) {
@@ -30,7 +30,7 @@ export default function InvoicesList({ data, datatotal, medata }) {
     const year = dateObj.getFullYear();
     return `${day} ${month} ${year}`;
   };
- 
+
 
   function PrevPage() {
     if (page > 1) {
@@ -51,7 +51,7 @@ export default function InvoicesList({ data, datatotal, medata }) {
   useEffect(() => {
     const storedPage = Cookies.get('page');
     if (storedPage) {
-      setPage(Number(storedPage)); 
+      setPage(Number(storedPage));
     }
   }, []);
 
@@ -70,41 +70,10 @@ export default function InvoicesList({ data, datatotal, medata }) {
               <h3>${x.items.map((a) => a.total)}</h3>
               <li
                 style={{
-                  color: `${
-                    x.status === 0
-                      ? "rgba(51, 214, 159, 1)"
-                      : x.status === 1
-                      ? "rgba(255, 143, 0, 1)"
-                      : x.status === 2
-                      ? "rgba(55, 59, 83, 1)"
-                      : x.status === 3
-                      ? "rgba(236, 87, 87, 1)"
-                      : ""
-                  }`,
-                  backgroundColor: `${
-                    x.status === 0
-                      ? "rgba(51, 214, 159, .05)"
-                      : x.status === 1
-                      ? "rgba(255, 143, 0, .05)"
-                      : x.status === 2
-                      ? "rgba(55, 59, 83, .05)"
-                      : x.status === 3
-                      ? "rgba(236, 87, 87, .05)"
-                      : ""
-                  }`,
+                  color: `${x.status === 0 ? "rgba(51, 214, 159, 1)" : x.status === 1 ? "rgba(255, 143, 0, 1)" : x.status === 2 ? "rgba(55, 59, 83, 1)" : x.status === 3 ? "rgba(236, 87, 87, 1)" : ""}`,
+                  backgroundColor: `${x.status === 0 ? "rgba(51, 214, 159, .05)" : x.status === 1 ? "rgba(255, 143, 0, .05)" : x.status === 2 ? "rgba(55, 59, 83, .05)" : x.status === 3 ? "rgba(236, 87, 87, .05)" : ""}`,
                 }}
-              >
-                ●{" "}
-                {x.status === 0
-                  ? "pending"
-                  : x.status === 1
-                  ? "paid"
-                  : x.status === 2
-                  ? "draft"
-                  : x.status === 3
-                  ? "Deleted"
-                  : ""}
-              </li>
+              >● {x.status === 0 ? "pending" : x.status === 1 ? "paid" : x.status === 2 ? "draft" : x.status === 3 ? "Deleted" : ""}</li>
             </Link>
           ))
         ) : (

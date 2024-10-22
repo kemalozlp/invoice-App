@@ -1,4 +1,4 @@
-.invoice-item{
+.invoice-item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,7 +7,7 @@
   position: absolute;
   left: 0;
   background-color: #373B53;
-  border-radius:0 20px 20px 0 ;
+  border-radius: 0 20px 20px 0;
 }
 
 .invoicedark {
@@ -22,9 +22,47 @@ hr {
   width: 103px;
   margin: 0;
   border: 2px solid rgba(73, 78, 110, 1);
-  
+
 }
 
 .ovalimg {
   margin-bottom: 24px;
+}
+
+
+
+@media (width <=768px) {
+  .invoice-item {
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    border-radius: 0;
+  }
+
+  .invoive-item-header{
+    img{
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .invoicedark {
+    width: 150px;
+    height: 80px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 32px;
+
+    hr {
+      width: 80px;
+      height: 80px; 
+    }
+
+    .ovalimg {
+      margin-bottom: 0px;
+    }
+
+  }
+
 }
