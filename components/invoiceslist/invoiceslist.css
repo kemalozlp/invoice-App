@@ -1,5 +1,5 @@
 .invoice {
-  width: 730px; 
+  width: 730px;
   top: 77px;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
     text-align: right;
     text-transform: uppercase;
 
-    span{
+    span {
       color: #7e88c3;
     }
   }
@@ -64,7 +64,18 @@
     line-height: 15px;
     letter-spacing: -0.25px;
     text-align: left;
-
     border-radius: 10px;
+  }
+}
+
+@media (width <=768px) {
+  .invoice {
+    width: 90%;  
+    padding-top: 150px;
+  }
+  .invoiceİtem {
+    width: 90%;  
+    padding-top: 150px;
+    padding: 20px;
   }
 }
