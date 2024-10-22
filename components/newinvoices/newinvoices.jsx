@@ -4,13 +4,13 @@ import "./newinvoices.css"
 import Image from "next/image";
 import { TopPlus } from "../invoicestop/topsvg";
 
-export default function NewInvoices({ data }) {
+export default function NewInvoices({ medata }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
 
-  console.log(data,"132123123123123213");
+  console.log(medata,"132123123123123213");
   
   useEffect(() => {
     setItemList([...itemList, {
@@ -54,17 +54,17 @@ export default function NewInvoices({ data }) {
             <div className="formsectionRow">
               <h4>Bill From</h4>
               <label htmlFor="streetadress">Sokak Adresi
-                <input type="text" name="streetadress" defaultValue={data.street} />
+                <input type="text" name="streetadress" defaultValue={medata.street} />
               </label>
               <div className="citypostcountry">
                 <label htmlFor="city">Şehir
-                  <input type="text" name="citypostcountry" defaultValue={data.city} />
+                  <input type="text" name="citypostcountry" defaultValue={medata.city} />
                 </label>
                 <label htmlFor="postcode">Posta Kodu
-                  <input type="text" name="postcode" defaultValue={data.postCode} />
+                  <input type="text" name="postcode" defaultValue={medata.postCode} />
                 </label>
                 <label htmlFor="country">Ülke
-                  <input type="text" name="country" defaultValue={data.country} />
+                  <input type="text" name="country" defaultValue={medata.country} />
                 </label>
               </div>
             </div>

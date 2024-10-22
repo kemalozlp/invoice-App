@@ -2,8 +2,8 @@
 // postService.js
 import { advancedFetch } from './fetchUtils'; 
 
-export const getInvoices = async () => {
-  const response = await advancedFetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoices");
+export const getInvoices = async (page, pageSize) => {
+  const response = await advancedFetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoices?page="+ page + "&pageSize=" + pageSize);
   return response;
 };
  

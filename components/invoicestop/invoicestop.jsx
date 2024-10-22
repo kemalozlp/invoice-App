@@ -1,23 +1,10 @@
 "use client"
-
-import { getMe } from "@/utils/invoicesService";
 import NewInvoices from "../newinvoices/newinvoices"
 import "./invoicestop.css"
 import { DowndArrow, TopPlus } from "./topsvg"
-import { useEffect, useState } from "react";
 
 
-export default function InvoicesTop({ length, FilterData }) {
-  const [data, setData] = useState([]);
-
-
-  useEffect(() => {
-    async () => {
-      const data = await getMe();
-      setData(data)
-      console.log(data);
-    }
-  }, []);
+export default function InvoicesTop({ length, FilterData, medata }) {
 
   return (
     <div className="invoicesTopCont">
@@ -42,7 +29,7 @@ export default function InvoicesTop({ length, FilterData }) {
             </label>
           </div>
         </div>
-        <NewInvoices data={data} />
+        <NewInvoices medata={medata} />
       </div>
     </div>
   )
