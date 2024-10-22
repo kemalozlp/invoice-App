@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import InvoicesTop from "../invoicestop/invoicestop"
 import "./emptyinvoices.css" 
