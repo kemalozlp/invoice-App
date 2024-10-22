@@ -1,3 +1,5 @@
+"use server"
+
 export const advancedFetch = async (url, method = "GET", data = null) => {
   const response = await fetch(url, {
     method,

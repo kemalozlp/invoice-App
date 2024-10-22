@@ -1,24 +1,28 @@
 "use client"
 
+import { getInvoices, getMe } from "@/utils/invoicesService";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import EmptyInvoices from "../emptyinvoices/emptyinvoices";
 import InvoicesTop from "../invoicestop/invoicestop";
-import "./invoiceslist.css";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import "./invoiceslist.css"; 
 
-export default function InvoicesList({ data, datatotal, medata }) {
-  const [datalist, setDataList] = useState(data.invoices);
+
+export default function InvoicesList({ medata }) {
+  const [datalist, setDataList] = useState([]);
   const [page, setPage] = useState(1);
 
-  const router = useRouter();
+  useEffect(() => {
+    const getInvoicess = async (e) => {
+      const data = await getInvoices(page, 5);
+      setDataList(data);
+    }
+    getInvoicess();
+  }, [page]);
 
   function FilterData(event, statusdata) {
     if (event.target.checked) {
-      setDataList(datalist.filter((x) => x.status === Number(statusdata)));
-    } else {
-      setDataList(data.invoices);
+      setDataList(datalist?.invoices?.filter((x) => x.status === Number(statusdata)));
     }
   }
 
@@ -31,36 +35,30 @@ export default function InvoicesList({ data, datatotal, medata }) {
     return `${day} ${month} ${year}`;
   };
 
+  console.log(datalist, "dasdasdasdasdasdasdasdasddasd");
+
 
   function PrevPage() {
     if (page > 1) {
-      const newPage = page - 1;
-      setPage(newPage);
-      Cookies.set('page', newPage);
-      router.refresh(); // Sayfayı yeniden oluştur 
+      setPage(prev => prev - 1);
     }
   }
 
+  console.log( Math.ceil(datalist.totalItems / datalist.pageSize), "dasdasdsadasdasdasdasda8s7das4d98as4d9as4d8as94da98");
+  
   function NextPage() {
-    const newPage = page + 1;
-    setPage(newPage);
-    Cookies.set('page', newPage);
-    router.refresh(); // Sayfayı yeniden oluştur 
+    if (page < Math.ceil(datalist.totalItems / datalist.pageSize)) {
+      setPage(prev => prev + 1);
+    }
   }
 
-  useEffect(() => {
-    const storedPage = Cookies.get('page');
-    if (storedPage) {
-      setPage(Number(storedPage));
-    }
-  }, []);
 
   return (
     <div className="invoice">
-      <InvoicesTop length={datatotal} FilterData={FilterData} medata={medata} />
+      <InvoicesTop length={datalist.totalItems} FilterData={FilterData} medata={medata} />
       <div className="invoiceList">
-        {datalist.length > 0 ? (
-          datalist.map((x, i) => (
+        {datalist?.invoices?.length > 0 ? (
+          datalist?.invoices.map((x, i) => (
             <Link href={"/" + x.id} key={i} className="invoiceİtem">
               <h3>
                 <span>#</span>{x.referanceNumber}

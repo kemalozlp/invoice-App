@@ -1,3 +1,4 @@
+"use server"
 
 // postService.js
 import { advancedFetch } from './fetchUtils'; 

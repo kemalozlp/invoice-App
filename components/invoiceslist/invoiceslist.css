@@ -32,6 +32,7 @@
 
 
   h3 {
+    width: 59px;
     font-family: League Spartan;
     font-size: 20px;
     font-weight: 900;
@@ -46,6 +47,7 @@
   }
 
   p {
+    width: 92px;
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
