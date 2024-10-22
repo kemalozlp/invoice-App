@@ -1,5 +1,13 @@
 .newInvoicesBtn {
   border: none;
+
+  h2:nth-child(1) {
+    display: none;
+  }
+
+  h2:nth-child(2) {
+    display: block;
+  }
 }
 
 input::-webkit-outer-spin-button,
@@ -8,7 +16,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.newInvoicesForm {  
+.newInvoicesForm {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -52,20 +60,21 @@ input::-webkit-inner-spin-button {
   position: relative;
 
 }
- 
+
 .formsections::-webkit-scrollbar {
   width: 10px;
-} 
+}
+
 .formsections::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 20px;
 }
- 
+
 .formsections::-webkit-scrollbar-thumb {
   background: rgba(223, 227, 250, 1);
   border-radius: 20px;
 }
- 
+
 .formsections::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -153,7 +162,7 @@ input::-webkit-inner-spin-button {
   gap: 16px;
 
   input[type=number] {
-    all: unset; 
+    all: unset;
     width: initial;
     padding-inline: 5px;
     height: 48px;
@@ -265,3 +274,4 @@ input::-webkit-inner-spin-button {
     background: white;
   }
 }
+ 

@@ -37,7 +37,7 @@ export default function NewInvoices({ medata }) {
     <>
       <button className="newInvoicesBtn" onClick={() => setShow(true)}>
         <TopPlus />
-        <h2 >Yeni Fatura</h2>
+        <h2 >Yeni Fatura</h2> 
       </button>
 
       <div className="newInvoicesForm" style={{
