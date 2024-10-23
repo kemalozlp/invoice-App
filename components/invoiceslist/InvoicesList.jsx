@@ -7,6 +7,7 @@ import EmptyInvoices from "../emptyinvoices/emptyinvoices";
 import InvoicesTop from "../invoicestop/invoicestop";
 import "./invoiceslist.css";
 import Image from "next/image";
+import { LeftArrow, RightArrow } from "../invoicestop/topsvg";
 
 
 export default function InvoicesList({ medata }) {
@@ -94,8 +95,8 @@ export default function InvoicesList({ medata }) {
       </div>
 
       <div className="buttonList">
-        <button onClick={PrevPage}>Önceki</button>
-        <button onClick={NextPage}>Sonraki</button>
+      <button onClick={PrevPage}> <LeftArrow />  Önceki </button>
+      <button onClick={NextPage}>Sonraki <RightArrow /> </button>
       </div>
     </div>
   );
