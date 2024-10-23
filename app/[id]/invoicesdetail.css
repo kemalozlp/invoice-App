@@ -208,3 +208,53 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+
+
+@media (width <=768px) {
+  .invoiceDetail {
+    width: 688px;
+    height: 1024px;
+  }
+
+  .detailHeader {
+    width: 688px;
+
+  }
+
+  .invoicedetailheader {
+    width: 688px;
+  }
+
+  .newInvoicesBtn {
+    width: 73px;
+    font-family: League Spartan;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+
+  }
+
+  .dlt {
+    width: 89px;
+  }
+
+  .save {
+    width: 131px;
+    font-family: League Spartan;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    text-align: left;
+  }
+
+  .invoicedetailbtn {
+    width: 688px;
+  }
+
+  .detailContent {
+    width: 688px;
+  }
+}
