@@ -102,15 +102,42 @@
     img {
       display: none;
     }
+
     .invoiceTextItem {
       width: 326px;
       gap: 20px;
     }
-  
+
     .invoiceTextItem:nth-child(2) {
       justify-content: flex-end;
     }
   }
 
+
+}
+
+.buttonList {
+  display: flex;
+  gap: 10px;
+  font-weight: 900;
+ 
+
+
+  button {
+    display: flex;
+    gap: 5px;
+   align-items: center;
+    background-color: #7C5DFA;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+  }
+
+  svg {
+    width: 13px;
+
+
+  }
 
 }
