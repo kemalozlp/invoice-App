@@ -68,16 +68,49 @@
     text-align: left;
     border-radius: 10px;
   }
+
+
+  .invoiceTextItem:nth-child(1) {
+    width: 326px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+  }
+
+  .invoiceTextItem:nth-child(2) {
+    width: 224px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }
 
 @media (width <=768px) {
   .invoice {
-    width: 90%;  
-    padding-top: 150px;
+    width: 100%;
+    padding: 150px 10px;
   }
+
   .invoiceİtem {
-    width: 90%;  
+    width: 100%;
     padding-top: 150px;
     padding: 20px;
+
+    img {
+      display: none;
+    }
+    .invoiceTextItem {
+      width: 326px;
+      gap: 20px;
+    }
+  
+    .invoiceTextItem:nth-child(2) {
+      justify-content: flex-end;
+    }
   }
+
+
 }

@@ -10,8 +10,8 @@ export default function NewInvoices({ medata }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
 
-  console.log(medata,"132123123123123213");
-  
+  console.log(medata, "132123123123123213");
+
   useEffect(() => {
     setItemList([...itemList, {
       id: additem,
@@ -37,7 +37,8 @@ export default function NewInvoices({ medata }) {
     <>
       <button className="newInvoicesBtn" onClick={() => setShow(true)}>
         <TopPlus />
-        <h2 >Yeni Fatura</h2> 
+        <h2 className="desktop">Yeni Fatura</h2>
+        <h2 className="mobile" >Yeni</h2>
       </button>
 
       <div className="newInvoicesForm" style={{

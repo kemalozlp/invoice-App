@@ -1,13 +1,7 @@
 .newInvoicesBtn {
   border: none;
-
-  h2:nth-child(1) {
-    display: none;
-  }
-
-  h2:nth-child(2) {
-    display: block;
-  }
+ 
+ 
 }
 
 input::-webkit-outer-spin-button,
@@ -266,12 +260,34 @@ input::-webkit-inner-spin-button {
   text-align: left;
 
 
-  svg {
+  svg { 
     width: 32px;
     height: 32px;
     padding: 10px;
     border-radius: 16px;
     background: white;
   }
+
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
 }
- 
+
+@media (width <= 768px) {
+  .newInvoicesBtn {
+
+
+    .desktop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+  }
+
+}

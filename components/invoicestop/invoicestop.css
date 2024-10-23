@@ -16,13 +16,19 @@
     text-align: left;
   }
 
-  p {
+
+  .desktop {
+    display: block;
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
     letter-spacing: -0.10000000149011612px;
     text-align: left;
     color: rgba(136, 142, 176, 1);
+  }
+
+ .mobile {
+    display: none;
   }
 }
 
@@ -97,8 +103,12 @@
 
 
 @media (width <=768px) {
+  .invoicesTopLogo {
+    width: 40%;
+  }
+
   .invoicesTopCont {
-    width: 90%;
+    width: 100%;
   }
 
   .filterandNew {
@@ -113,5 +123,37 @@
     }
 
   }
+
+  .invoicesTopLogo {
+
+    .desktop {
+      display: none;
+    }
+
+   .mobile {
+      display: block;
+    }
+
+  }
+
+}
+
+@media (width <=375px) {
+  .invoicesTopCont {
+    flex-wrap: wrap;
+  }
+  .filterandNew {
+    gap: 5px;
+    flex-wrap: wrap;
+    p:nth-child(1) {
+      display: none;
+    }
+
+    p:nth-child(2) {
+      display: block;
+    }
+
+  }
+
 
 }
