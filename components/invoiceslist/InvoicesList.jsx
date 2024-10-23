@@ -18,7 +18,7 @@ export default function InvoicesList({ medata }) {
     const getInvoicess = async (e) => {
       const data = await getInvoices(page, 5);
       setDatas(data);
-      setDataList(data);
+      setDataList(data); 
     }
     getInvoicess();
   }, [page]);
@@ -30,11 +30,7 @@ export default function InvoicesList({ medata }) {
       setDataList(datas);
     }
   }
-
-  console.log(datas);
-  console.log(datalist);
-  
-
+ 
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -68,7 +64,7 @@ export default function InvoicesList({ medata }) {
  
   return (
     <div className="invoice">
-      <InvoicesTop length={datalist.totalItems} FilterData={FilterData} medata={medata} />
+      <InvoicesTop length={datalist.totalItems} datalist={datalist} FilterData={FilterData} medata={medata} />
       <div className="invoiceList">
         {datalist?.invoices?.length > 0 ? (
           datalist?.invoices.map((x, i) => (

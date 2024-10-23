@@ -55,7 +55,7 @@ export default async function InvoicesDetail({ params }) {
             }}>{filteredData?.status === 0 ? "pending" : filteredData?.status === 1 ? "paid" : filteredData?.status === 2 ? "draft" : filteredData?.status === 3 ? "Deleted" : ""}</li>
         </div>
         <div className="invoicedetailbtn">
-          <EditInvoices medata={medata} />
+          <EditInvoices medata={medata} filteredData={filteredData} />
           <button className="dlt">Sil</button>
           <button className="save">Ödendi olarak işaretle</button>
         </div>
