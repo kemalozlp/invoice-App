@@ -61,7 +61,7 @@ export default function EditInvoices({ medata, filteredData }) {
   return (
     <>
       <button className="newInvoicesBtn" onClick={() => setShowEdit(true)}>
-        <h2 >Düzenle</h2>
+        <h2 > Edit</h2>
       </button>
 
       <div className="newInvoicesForm" style={{
