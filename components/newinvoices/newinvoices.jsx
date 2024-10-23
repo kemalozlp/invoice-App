@@ -4,11 +4,15 @@ import "./newinvoices.css"
 import Image from "next/image";
 import { TopPlus } from "../invoicestop/topsvg";
 
-export default function NewInvoices({ medata }) {
+export default function NewInvoices({ medata, datalist }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
+
+
+  console.log(datalist, "asdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
 
   console.log(medata, "132123123123123213");
 
@@ -32,6 +36,13 @@ export default function NewInvoices({ medata }) {
     console.log(selectedIndex);
   }, [selectedIndex]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
 
   return (
     <>
@@ -94,7 +105,7 @@ export default function NewInvoices({ medata }) {
               </div>
               <div className="dateterms">
                 <label htmlFor="invoicedate">
-                  <input type="date" name="invoicedate" />
+                  <input type="date" name="invoicedate" value={formatDate(datalist.invoiceDate)} />
                 </label>
                 <label htmlFor="invoiceterm">
                   <select name="invoiceterm">
@@ -116,10 +127,11 @@ export default function NewInvoices({ medata }) {
                   <p>Fiyat</p>
                   <p>Toplam</p>
                 </div>
+                 
                 {
                   itemList && itemList.map((x, i) =>
                     <div className="featuresInputItem">
-                      <input type={x.text} placeholder={x.textplaceholder} />
+                      <input type={x.text} placeholder={x.textplaceholder}/>
                       <input type={x.number} placeholder={x.numberfirstplace} />
                       <input type={x.number} placeholder={x.numbersecond} />
                       <p></p>
