@@ -277,7 +277,7 @@ input::-webkit-inner-spin-button {
     display: none;
   }
 }
-
+ 
 @media (width <= 768px) {
   .newInvoicesBtn {
 
@@ -290,5 +290,11 @@ input::-webkit-inner-spin-button {
       display: block;
     }
   }
+
+  .newInvoicesForm{ 
+    left: 0;
+    padding: 10px !important;
+  }
+
 
 }

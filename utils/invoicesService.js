@@ -1,15 +1,20 @@
 "use server"
- 
+
 import { advancedFetch } from './fetchUtils';
 
 export const getInvoices = async (page, pageSize) => {
   const response = await advancedFetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoices?page=" + page + "&pageSize=" + pageSize);
   return response;
 };
+export const getDetailInvoices = async (id) => {
+  const response = await advancedFetch("https://invoiceapi.senihay.com/api/Invoice/GetInvoiceByIdOptional/" + id);
+  return response;
+};
 
- 
+
+
 export const saveChanges = async (form, itemss) => {
- 
+
   const response = await fetch('https://invoiceapi.senihay.com/api/Invoice/SaveChanges', {
     method: 'PUT',
     headers: {
@@ -19,8 +24,8 @@ export const saveChanges = async (form, itemss) => {
     body: JSON.stringify({
       id: form[0].id,
       description: form[0].description,
-      invoiceDate: form[0].invoicedate ,
-      paymentTermDay: form[0].invoicesterm ,
+      invoiceDate: form[0].invoicedate,
+      paymentTermDay: form[0].invoicesterm,
       clientId: 1,
       items: itemss
     }),
@@ -31,20 +36,22 @@ export const saveChanges = async (form, itemss) => {
 };
 
 export const addClient = async (form) => {
- 
+
+  console.log(form);
+  
   const response = await fetch('https://invoiceapi.senihay.com/api/Adress/AddClient', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Accept': '*/*',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-       name: form[0].name,
-       mail: form[0].clientemail,
-       street: form[0].streetadress,
-       city: form[0].city,
-       postCode: form[0].postcode,
-       country: form[0].country
+      name: form[0].clients,
+      mail: form[0].clientemail,
+      street: form[0].tostreetadress,
+      city: form[0].tocity,
+      postCode: form[0].topostcode,
+      country: form[0].tocountry
     }),
   })
     .then(response => response.json())
@@ -53,18 +60,21 @@ export const addClient = async (form) => {
 };
 
 export const addInvoices = async (form, itemss) => {
- 
-  const response = await fetch('https://invoiceapi.senihay.com/api/Invoice/SaveChanges', {
-    method: 'PUT',
+
+
+  console.log("çalıştım");
+  
+  const response = await fetch('https://invoiceapi.senihay.com/api/Invoice/AddInvoice', {
+    method: 'POST',
     headers: {
       'Accept': '*/*',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      id: form[0].id,
+    body: JSON.stringify({ 
       description: form[0].description,
-      invoiceDate: form[0].invoicedate ,
-      paymentTermDay: form[0].invoicesterm ,
+      created:  form[0].date,
+      invoiceDate: form[0].invoicedate,
+      paymentTermDay: form[0].invoicesterm,
       clientId: 1,
       items: itemss
     }),
@@ -75,20 +85,49 @@ export const addInvoices = async (form, itemss) => {
 };
 
 
+export const updateClient = async (form) => {
+  try {
+    const response = await fetch('https://invoiceapi.senihay.com/api/Adress/UpdateClient', {
+      method: 'POST',
+      headers: {
+        'Accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: 1,
+        name: form[0].clients,
+        mail: form[0].clientemail,
+        street: form[0].tostreetadress,
+        city: form[0].tocity,
+        postCode: form[0].topostcode,
+        country: form[0].tocountry,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+};
 export const saveAsDraft = async (form, itemss) => {
- 
+
   const response = await fetch('https://invoiceapi.senihay.com/api/Invoice/SaveAsDraft', {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Accept': '*/*',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      id: form[0].id,
+    body: JSON.stringify({ 
       description: form[0].description,
-      invoiceDate: form[0].invoicedate ,
+      created:  form[0].date,
+      invoiceDate: form[0].invoicedate,
       paymentTermDay: form[0].invoicesterm,
-      paymentDue:"2024-10-24T10:22:07.655Z",
+      paymentDue: "2024-10-24T10:22:07.655Z",
       clientId: 1,
       items: itemss
     }),

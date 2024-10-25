@@ -5,12 +5,17 @@ import Image from "next/image";
 import { TopPlus } from "../invoicestop/topsvg";
 import { useFormState } from "react-dom"
 import { editInvoicesForm } from "../editinvoices/action";
+import { addClient, addInvoices, saveAsDraft } from "@/utils/invoicesService";
 
 export default function NewInvoices({ medata, datalist }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
+  const [formData, setFormData] = useState([]);
+  const [items, setItems] = useState([]);
+  const [saves, setSaves] = useState(false);
+  const [savesdraft, setSavesDraft] = useState(false);
   const [state, action] = useFormState(editInvoicesForm, {
     message: null,
     error: null,
@@ -34,25 +39,53 @@ export default function NewInvoices({ medata, datalist }) {
     console.log(selectedIndex);
   }, [selectedIndex]);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  };
-
   async function handleSubmit(e) {
     e.preventDefault();
     const formObj = Object.fromEntries(new FormData(e.target));
     await action(new FormData(e.target));
+
     if (state?.errors) {
       console.log("Form hataları:", state.errors);
       return;
     }
+ 
+    if (!formObj.date) {
+      formObj.date = new Date().toISOString();
+    }
+
     console.log("Form verileri:", formObj);
-  
+
+    try {
+      if (saves) {
+        const clientResponse = await addClient([formObj]);
+        console.log("Müşteri kaydı başarılı:", clientResponse);
+
+        const invoiceResponse = await addInvoices([formObj], items);
+        console.log("Fatura kaydı başarılı:", invoiceResponse);
+        setSaves(false);
+      }
+
+
+      if (savesdraft) {
+        const savesResponse = await saveAsDraft([formObj], items);
+        console.log("Fatura kaydı başarılı:", savesResponse);
+        setSavesDraft(false);
+      } 
+    } catch (error) {
+      console.error("Kayıt hatası:", error);
+    }
   }
+
+console.log(savesdraft);
+console.log(saves);
+
+
+if(show){
+  document.body.classList.add("active");
+}else{
+  document.body.classList.remove("active");
+}
+
 
 
   return (
@@ -99,34 +132,34 @@ export default function NewInvoices({ medata, datalist }) {
             <div className="formsectionRow">
               <h4>Bill To</h4>
               <label htmlFor="clients">Müşterinin Adı
-                <input type="text" name="clients" defaultValue={"19 Union Terrace"} />
+                <input type="text" name="clients" />
                 {state?.errors?.clients && <small style={{ color: "red" }}>{state.errors.clients}</small>}
               </label>
               <label htmlFor="clientemail">Müşterinin Epostası
-                <input type="text" name="clientemail" defaultValue={"London"} />
+                <input type="text" name="clientemail" />
                 {state?.errors?.clientemail && <small style={{ color: "red" }}>{state.errors.clientemail}</small>}
               </label>
               <label htmlFor="tostreetadress">Sokak Adresi
-                <input type="text" name="tostreetadress" defaultValue={"E1 3EZ"} />
+                <input type="text" name="tostreetadress" />
                 {state?.errors?.tostreetadress && <small style={{ color: "red" }}>{state.errors.streetadress}</small>}
               </label>
               <div className="citypostcountry">
                 <label htmlFor="tocity">Şehir
-                  <input type="text" name="tocity" defaultValue={"London"} />
+                  <input type="text" name="tocity" />
                   {state?.errors?.tocity && <small style={{ color: "red" }}>{state.errors.tocity}</small>}
                 </label>
                 <label htmlFor="topostcode">Posta Kodu
-                  <input type="text" name="topostcode" defaultValue={"E1 3EZ"} />
+                  <input type="text" name="topostcode" />
                   {state?.errors?.topostcode && <small style={{ color: "red" }}>{state.errors.topostcode}</small>}
                 </label>
                 <label htmlFor="tocountry">Ülke
-                  <input type="text" name="tocountry" defaultValue={"United Kingdom"} />
+                  <input type="text" name="tocountry" />
                   {state?.errors?.tocountry && <small style={{ color: "red" }}>{state.errors.tocountry}</small>}
                 </label>
               </div>
               <div className="dateterms">
                 <label htmlFor="invoicedate">Fatura Tarihi:
-                  <input type="date" name="invoicedate" value={formatDate(datalist.invoiceDate)} />
+                  <input type="date" name="invoicedate" />
                   {state?.errors?.invoicedate && <small style={{ color: "red" }}>{state.errors.invoicedate}</small>}
                 </label>
                 <label htmlFor="invoiceterm">Ödeme Koşulları:
@@ -139,7 +172,7 @@ export default function NewInvoices({ medata, datalist }) {
                   {state?.errors?.invoiceterm && <small style={{ color: "red" }}>{state.errors.invoiceterm}</small>}
                 </label>
               </div> <label htmlFor="description">Proje Açıklaması
-                <input type="text" name="description" defaultValue="test" />
+                <input type="text" name="description" />
                 {state?.errors?.description && <small style={{ color: "red" }}>{state.errors.description}</small>}
               </label>
             </div>
@@ -175,8 +208,8 @@ export default function NewInvoices({ medata, datalist }) {
           }}>
             <button type="button" onClick={() => setShow(false)}>Vazgeç</button>
             <div className="saveBtns">
-              <button type="button">Taslak Olarak Kaydet</button>
-              <button>Kaydet ve Gönder</button>
+              <button onClick={() => setSavesDraft(true)} >Taslak Olarak Kaydet</button>
+              <button onClick={() => setSaves(true)}>Kaydet ve Gönder</button>
             </div>
           </div>
         </form>
