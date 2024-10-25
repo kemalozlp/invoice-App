@@ -118,26 +118,34 @@
 
 .buttonList {
   display: flex;
-  gap: 10px;
-  font-weight: 900;
- 
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-weight: 700;
 
+  .pagination {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   button {
     display: flex;
     gap: 5px;
-   align-items: center;
+    align-items: center;
     background-color: #7C5DFA;
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 5px;
+    padding: 10px;
   }
 
   svg {
+    margin-bottom: 5px;
     width: 13px;
-
-
   }
 
 }
