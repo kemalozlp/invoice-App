@@ -2,13 +2,15 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "./editinvoices.css"
 import Image from "next/image";
-import { saveChanges, searchUser } from "@/utils/invoicesService";
+import { saveChanges, searchUser, updateClient } from "@/utils/invoicesService";
 import { editInvoicesForm } from "./action";
 import { useFormState } from "react-dom"
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-export default function EditInvoices({ medata, filteredData }) {
+export default function EditInvoices({ medata, data }) {
 
-  console.log(filteredData, "111111111111111111111222222222222222222222222222222222222");
+  console.log(data, "111111111111111111111222222222222222222222222222222222222");
 
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
@@ -19,7 +21,7 @@ export default function EditInvoices({ medata, filteredData }) {
   const [formData, setFormData] = useState([]);
   const [items, setItems] = useState([]);
   const [saves, setSaves] = useState(false);
-  const [filteredId, setFilteredId] = useState(filteredData.id);
+  const [filteredId, setFilteredId] = useState(data.id);
   const [state, action] = useFormState(editInvoicesForm, {
     message: null,
     error: null,
@@ -50,8 +52,8 @@ export default function EditInvoices({ medata, filteredData }) {
 
 
   const handleFocusOut = (e) => {
-    const user = searchedUsers.find(user => user.mail === e.target.value);
-    setSelectedUser(user);
+    const user = searchedUsers.find(user => user.name === e.target.value);
+    setSelectedUser(user); 
   };
 
   useEffect(() => {
@@ -83,8 +85,7 @@ export default function EditInvoices({ medata, filteredData }) {
       formObj.id = filteredId;
     }
 
-    if (!filteredId) {
-      console.log("filteredId henüz yüklenmedi, lütfen bekleyin.");
+    if (!filteredId) { 
       return;
     }
 
@@ -93,20 +94,29 @@ export default function EditInvoices({ medata, filteredData }) {
     setFormData([formObj]);
 
     setSaves(true);
+    return  redirect("/");
   }
 
-  useEffect(() => {
-    // filteredId ve formData tam olarak yüklendikten sonra PUT isteği yapılabilir
+  useEffect(() => { 
     if (saves && formData.length > 0 && items.length > 0 && filteredId) {
       const savechange = async () => {
         await saveChanges(formData, items);
       };
 
+      const updateclient = async () => {
+        await updateClient(formData);
+      };
+
+      updateclient();
       savechange();
-      setSaves(false);  // İşlemden sonra saves'i tekrar false yap
+      setSaves(false); 
     }
 
-  }, [saves, formData, items, filteredId]);
+    console.log(formData);
+    
+
+  }, [saves, formData, items, filteredId,showedit]);
+
 
 
   useEffect(() => {
@@ -122,12 +132,12 @@ export default function EditInvoices({ medata, filteredData }) {
     return (quantity * price).toFixed(2);
   };
 
-  console.log(filteredData.id);
+  console.log(data.id);
 
   return (
     <>
       <button className="newInvoicesBtn" onClick={() => setShowEdit(true)}>
-        <h2 > Edit</h2>
+        <h2 > Düzenle</h2>
       </button>
 
       <div className="newInvoicesForm" style={{
@@ -138,11 +148,12 @@ export default function EditInvoices({ medata, filteredData }) {
       }}>
         <h1 style={{
           display: showedit ? "flex" : "none"
-        }}>#{filteredData?.referanceNumber} Düzenle</h1>
+        }}>#{data?.referanceNumber} Düzenle</h1>
         <form onSubmit={handleSubmit} >
           <div className="formsections">
             <div className="formsectionRow">
               <h4>Bill From</h4>
+
               <label htmlFor="streetadress">Sokak Adresi
                 <input type="text" name="streetadress" defaultValue={medata.street} />
                 {state?.errors?.streetadress && <small style={{ color: "red" }}>{state.errors.streetadress}</small>}
@@ -153,14 +164,17 @@ export default function EditInvoices({ medata, filteredData }) {
                   <input type="text" name="city" defaultValue={medata.city} />
                   {state?.errors?.city && <small style={{ color: "red" }}>{state.errors.city}</small>}
                 </label>
+
                 <label htmlFor="postcode">Posta Kodu
                   <input type="text" name="postcode" defaultValue={medata.postCode} />
                   {state?.errors?.postcode && <small style={{ color: "red" }}>{state.errors.postcode}</small>}
                 </label>
+
                 <label htmlFor="country">Ülke
                   <input type="text" name="country" defaultValue={medata.country} />
                   {state?.errors?.country && <small style={{ color: "red" }}>{state.errors.country}</small>}
                 </label>
+
               </div>
             </div>
 
@@ -175,14 +189,16 @@ export default function EditInvoices({ medata, filteredData }) {
                   name="clients"
                 />
                 {state?.errors?.clients && <small style={{ color: "red" }}>{state.errors.clients}</small>}
+
               </label> <datalist id="clientsa">
                 {searchedUsers.map((user, index) => (
-                  <option key={index} value={user.mail} />
+                  <option key={index} value={user.name} />
                 ))}
+                
               </datalist>
               <label htmlFor="clientemail">Müşterinin Epostası
                 <input type="text" name="clientemail" defaultValue={selectedUser?.mail} />
-              {state?.errors?.clientemail && <small style={{ color: "red" }}>{state.errors.clientemail}</small>}
+                {state?.errors?.clientemail && <small style={{ color: "red" }}>{state.errors.clientemail}</small>}
               </label>
               <label htmlFor="tostreetadress">Sokak Adresi
                 <input type="text" name="tostreetadress" defaultValue={selectedUser?.street} />
@@ -219,10 +235,9 @@ export default function EditInvoices({ medata, filteredData }) {
                   {state?.errors?.invoiceterm && <small style={{ color: "red" }}>{state.errors.invoiceterm}</small>}
                 </label>
 
-
               </div>
               <label htmlFor="description">Proje Açıklaması
-                <input type="text" name="description" defaultValue={filteredData?.description} />
+                <input type="text" name="description" defaultValue={data?.description} />
                 {state?.errors?.description && <small style={{ color: "red" }}>{state.errors.description}</small>}
               </label>
             </div>
@@ -237,7 +252,7 @@ export default function EditInvoices({ medata, filteredData }) {
                   <p>Toplam</p>
                 </div>
                 {
-                  filteredData ? filteredData.items.map((a, i) => <div className="featuresInputItem" key={i}>
+                  data ? data.items.map((a, i) => <div className="featuresInputItem" key={i}>
                     <input type="text" defaultValue={a.name} />
                     <input type="number" defaultValue={a.quantity} />
                     <input type="number" defaultValue={a.price} />
@@ -283,7 +298,7 @@ export default function EditInvoices({ medata, filteredData }) {
             display: showedit ? "flex" : "none"
           }}>
             <button type="button" onClick={() => setShowEdit(false)}>Vazgeç</button>
-            <button type="submit" onClick={() => { setSaves(!saves) }}>Kaydet ve Gönder</button>
+            <button type="submit" onClick={() => { setSaves(!saves); setShowEdit(false) }}>Kaydet ve Gönder</button>
           </div>
         </form>
       </div>
