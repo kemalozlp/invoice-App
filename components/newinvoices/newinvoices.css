@@ -11,6 +11,7 @@ input::-webkit-inner-spin-button {
 }
 
 .newInvoicesForm {
+  height: 100vh;
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -199,7 +200,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   padding: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -221,7 +222,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     gap: 8px;
 
-    button:nth-child(1) {
+    >button:nth-child(1) {
       background: rgba(55, 59, 83, 1);
       font-size: 15px;
       font-weight: 700;
