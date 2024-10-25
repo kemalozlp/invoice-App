@@ -1,63 +1,63 @@
 "use client"
+import {Spinner} from "@nextui-org/spinner";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import EditInvoices from "../../components/editinvoices/editinvoices";
 import "./invoicesdetail.css";
 import Image from "next/image";
-import { deleteInvoices, getInvoices, getMe, MarksPaidInvoices } from "@/utils/invoicesService";
+import { deleteInvoices, getDetailInvoices, getInvoices, getMe, MarksPaidInvoices } from "@/utils/invoicesService";
+import { notFound, redirect } from "next/navigation";
 export default function InvoicesDetail({ params }) {
   const [data, setData] = useState(null);
-  const [medata, setMeData] = useState(null);
-  const [filteredData, setFilteredData] = useState(null);
+  const [medata, setMeData] = useState(null); 
   const [deleted, setDeleted] = useState(false);
   const [markspaids, setMarkspaids] = useState(false);
   const dialogRef = useRef({});
 
-  useEffect(() => {
-    let id = 0;
-    if (params.id <= 24) {
-      id = 1;
-    } else if (params.id <= 28) {
-      id = 2;
-    } else if (params.id <= 32) {
-      id = 3;
-    } else if (params.id <= 36) {
-      id = 4;
-    } else if (params.id <= 40) {
-      id = 5;
-    }
+
+
+  useEffect(() => { 
 
     const fetchData = async () => {
-      const invoiceData = await getInvoices(id, 5);
-      const userData = await getMe();
-      const filtered = invoiceData?.invoices.find(x => x.id === Number(params.id));
+      const invoiceData = await getDetailInvoices(params.id);
+      const userData = await getMe(); 
 
       setData(invoiceData);
-      setMeData(userData);
-      setFilteredData(filtered);
+      setMeData(userData); 
+
+      if(!invoiceData){
+        return notFound();
+      }
     };
     const deleteInvoice = async () => {
-      await deleteInvoices(params.id);
-      router.push("/");
+      await deleteInvoices(params.id); 
     };
 
     const markspaid = async () => {
-      await MarksPaidInvoices(params.id);
-      router.push("/");
+      await MarksPaidInvoices(params.id); 
     };
 
     if (markspaids) {
       markspaid();
+      redirect("/");
     }
 
     if (deleted) {
       deleteInvoice();
+      redirect("/");
     }
 
     fetchData();
   }, [params.id, deleted, markspaids]);
+ 
 
-  console.log(typeof filteredData?.id);
+  if(!data){
+    return <div style={{
+      position:"absolute",
+      top:"50%",
+      left:"50%"
+    }}> <Spinner  label="Loading..." color="warning"  /></div>
+  }
 
 
   const formatDate = (dateString) => {
@@ -67,15 +67,8 @@ export default function InvoicesDetail({ params }) {
     const month = months[dateObj.getMonth()];
     const year = dateObj.getFullYear();
     return `${day} ${month} ${year}`;
-  };
-
-  let toplam = filteredData?.items?.map(x => x.price * x.quantity).reduce((acc, val) => acc + val, 0);
-
-
-  if (!filteredData) {
-    return <div>Loading...</div>;
-  }
-
+  }; 
+ 
   function handleClick() {
     if (dialogRef.current) {
       dialogRef.current.showModal();
@@ -101,17 +94,17 @@ export default function InvoicesDetail({ params }) {
           <p>Status</p>
           <li
             style={{
-              color: `${filteredData?.status === 0 ? "rgba(51, 214, 159, 1)" : filteredData?.status === 1 ? "rgba(255, 143, 0, 1)" : filteredData?.status === 2 ? "rgba(55, 59, 83, 1)" : filteredData?.status === 3 ? "rgba(236, 87, 87, 1)" : ""}`,
-              backgroundColor: `${filteredData?.status === 0 ? "rgba(51, 214, 159, .05)" : filteredData?.status === 1 ? "rgba(255, 143, 0, .05)" : filteredData?.status === 2 ? "rgba(55, 59, 83, .05)" : filteredData?.status === 3 ? "rgba(236, 87, 87, .05)" : ""}`,
+              color: `${data?.status === 0 ? "rgba(51, 214, 159, 1)" : data?.status === 1 ? "rgba(255, 143, 0, 1)" : data?.status === 2 ? "rgba(55, 59, 83, 1)" : data?.status === 3 ? "rgba(236, 87, 87, 1)" : ""}`,
+              backgroundColor: `${data?.status === 0 ? "rgba(51, 214, 159, .05)" : data?.status === 1 ? "rgba(255, 143, 0, .05)" : data?.status === 2 ? "rgba(55, 59, 83, .05)" : data?.status === 3 ? "rgba(236, 87, 87, .05)" : ""}`,
             }}
           >
-            {filteredData?.status === 0 ? "pending" : filteredData?.status === 1 ? "paid" : filteredData?.status === 2 ? "draft" : filteredData?.status === 3 ? "Deleted" : ""}
+            {data?.status === 0 ? "pending" : data?.status === 1 ? "paid" : data?.status === 2 ? "draft" : data?.status === 3 ? "Deleted" : ""}
           </li>
         </div>
         <dialog ref={(e) => (dialogRef.current = e)}>
           <div className="dialogCont">
             <h1>Silme İşlemini Onayla</h1>
-            <p>#{filteredData?.referanceNumber} numaralı faturayı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
+            <p>#{data?.referanceNumber} numaralı faturayı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
             <div className="dialogBtns">
               <button onClick={() => close()}>Vazgeç</button>
               <button onClick={() => {setDeleted(true);close()}}>Sil</button>
@@ -119,7 +112,7 @@ export default function InvoicesDetail({ params }) {
           </div>
         </dialog>
         <div className="invoicedetailbtn">
-          <EditInvoices medata={medata} filteredData={filteredData} />
+          <EditInvoices medata={medata} data={data} />
           <button className="dlt" onClick={() => handleClick()}>Sil</button>
           <button className="save" onClick={() => setMarkspaids(true)}>Ödendi olarak işaretle</button>
         </div>
@@ -127,30 +120,30 @@ export default function InvoicesDetail({ params }) {
       <div className="detailContent">
         <div className="dcTop">
           <div className="dctLeft">
-            <h4>#{filteredData?.referanceNumber}</h4>
-            <p>{filteredData?.description}</p>
+            <h4>#{data?.referanceNumber}</h4>
+            <p>{data?.description}</p>
           </div>
           <div className="dctRight">
-            <p> {filteredData?.fromStreet} <br /> {filteredData?.fromCity} <br /> {filteredData?.fromPostCode}  <br /> {filteredData?.fromCountry}</p>
+            <p> {data?.fromStreet} <br /> {data?.fromCity} <br /> {data?.fromPostCode}  <br /> {data?.fromCountry}</p>
           </div>
         </div>
         <div className="dcMedium">
           <div className="dcmLeft">
             <div>
               <p>Fatura Tarihi</p>
-              <h3>{formatDate(filteredData?.paymentDue)}</h3>
+              <h3>{formatDate(data?.paymentDue)}</h3>
             </div>
             <div>
               <p>Vadesi Gelen Ödeme</p>
-              <h3>{formatDate(filteredData?.invoiceDate)}</h3>
+              <h3>{formatDate(data?.invoiceDate)}</h3>
             </div>
           </div>
           <div className="dcmMedium">
             <p>fatura</p>
-            <h3>{filteredData?.clientName}</h3>
+            <h3>{data?.clientName}</h3>
             <p>
-              {filteredData?.fromStreet} <br /> {filteredData?.fromCity}  <br />  {filteredData?.fromPostCode} <br />
-              {filteredData?.fromCountry}
+              {data?.fromStreet} <br /> {data?.fromCity}  <br />  {data?.fromPostCode} <br />
+              {data?.fromCountry}
             </p>
           </div>
           <div className="dcmRight">
@@ -165,7 +158,7 @@ export default function InvoicesDetail({ params }) {
             <p>Fiyat</p>
             <p>Toplam</p>
           </div>
-          {filteredData?.items?.map((x, i) => (
+          {data?.items?.map((x, i) => (
             <div className="items-item" key={i}>
               <h3>{x.name}</h3>
               <p>{x.quantity}</p>
@@ -176,7 +169,7 @@ export default function InvoicesDetail({ params }) {
         </div>
         <div className="dcFooter">
           <h2>Ödenmesi Gereken Tutar</h2>
-          <h2>€{toplam}</h2>
+          <h2>€{data.amount}</h2>
         </div>
       </div>
     </div>

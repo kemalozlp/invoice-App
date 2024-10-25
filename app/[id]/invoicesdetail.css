@@ -165,6 +165,9 @@
 
 .itemsContainer {
   background-color: #f9fafe;
+  height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
   padding-inline: 32px;
   padding-top: 32px;
   padding-bottom: 39px;
@@ -173,6 +176,13 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  .item-item:nth-child(1) {
+    position: sticky;
+    top: -32px;
+    background: #f9fafe;
+    padding: 10px;
+  }
 
   .item-item {
     display: grid;
@@ -185,6 +195,19 @@
     grid-template-columns: 35% 20% 15% 10%;
     justify-content: space-between;
   }
+}
+
+.itemsContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.itemsContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.itemsContainer::-webkit-scrollbar-thumb {
+  background: #b3bcdf;
+  border-radius: 10px;
 }
 
 dialog {
@@ -223,6 +246,7 @@ dialog {
     justify-content: end;
     gap: 20px;
     align-items: center;
+
     button:nth-child(1) {
       background: rgba(249, 250, 254, 1);
       font-size: 15px;
@@ -235,6 +259,7 @@ dialog {
       border-radius: 20px;
       padding: 18px 15px;
     }
+
     button:nth-child(2) {
       background: rgba(236, 87, 87, 1);
       font-size: 15px;
@@ -255,12 +280,6 @@ dialog {
   gap: 96px;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .dcFooter {
   display: flex;
   background-color: #373b53;
@@ -275,17 +294,20 @@ dialog {
 
 @media (width <=768px) {
   .invoiceDetail {
-    width: 688px;
-    height: 1024px;
+    width: 95%;
+    margin: 20px auto; 
+    padding-top: 120px;
   }
 
   .detailHeader {
-    width: 688px;
-
+    width: 95%;
   }
 
   .invoicedetailheader {
-    width: 688px;
+    width: 95%;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .newInvoicesBtn {
@@ -296,6 +318,8 @@ dialog {
     line-height: 15px;
     letter-spacing: -0.25px;
     text-align: left;
+    flex-wrap: wrap;
+    justify-content: center;
 
   }
 
@@ -312,12 +336,46 @@ dialog {
     letter-spacing: -0.25px;
     text-align: left;
   }
-
-  .invoicedetailbtn {
-    width: 688px;
-  }
-
+ 
   .detailContent {
-    width: 688px;
+    width: 95%;
+    padding: 24px;
   }
+
+  .detailHeader {
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .invoicedetailbtn{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .newInvoicesBtn{
+    width: auto;  
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px !important;
+  }
+   .dcMedium{
+    display: flex;
+    flex-wrap: wrap;
+   }
+
+   .itemsContainer{
+    padding: 5px;
+    .item-item:nth-child(1){
+      display: none;
+    }
+    .items-item{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      *{
+        width: 25%;
+        text-align: center;
+      }
+    }
+   }
 }

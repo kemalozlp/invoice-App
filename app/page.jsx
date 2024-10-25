@@ -6,8 +6,7 @@ export default async function Home() {
  
 
  
-  const medata = await getMe();
-  console.log(medata, "asdasdasdad");
+  const medata = await getMe(); 
   return (
     <div>
       <InvoicesList   medata={medata} />
