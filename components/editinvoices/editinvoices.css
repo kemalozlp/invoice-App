@@ -3,7 +3,7 @@
 }
 
 .newInvoicesForm {
-  height: 100%;
+  height: 100vh;
   position: absolute;
   overflow: hidden;
   top: 0;

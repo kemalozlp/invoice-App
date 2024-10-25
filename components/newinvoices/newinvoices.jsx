@@ -3,18 +3,19 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./newinvoices.css"
 import Image from "next/image";
 import { TopPlus } from "../invoicestop/topsvg";
+import { useFormState } from "react-dom"
+import { editInvoicesForm } from "../editinvoices/action";
 
 export default function NewInvoices({ medata, datalist }) {
   const [itemList, setItemList] = useState([]);
   const [additem, setAddItem] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
+  const [state, action] = useFormState(editInvoicesForm, {
+    message: null,
+    error: null,
+  })
 
-
-  console.log(datalist, "asdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-
-  console.log(medata, "132123123123123213");
 
   useEffect(() => {
     setItemList([...itemList, {
@@ -27,9 +28,6 @@ export default function NewInvoices({ medata, datalist }) {
     }])
 
   }, [additem]);
-  console.log(itemList);
-
-
   useEffect(() => {
     setItemList(itemList.filter(x => x.id !== selectedIndex));
     setSelectedIndex(null);
@@ -43,6 +41,19 @@ export default function NewInvoices({ medata, datalist }) {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formObj = Object.fromEntries(new FormData(e.target));
+    await action(new FormData(e.target));
+    if (state?.errors) {
+      console.log("Form hataları:", state.errors);
+      return;
+    }
+    console.log("Form verileri:", formObj);
+  
+  }
+
 
   return (
     <>
@@ -61,61 +72,76 @@ export default function NewInvoices({ medata, datalist }) {
         <h1 style={{
           display: show ? "flex" : "none"
         }}>Yeni Fatura</h1>
-        <form >
+        <form onSubmit={handleSubmit}>
           <div className="formsections">
             <div className="formsectionRow">
               <h4>Bill From</h4>
               <label htmlFor="streetadress">Sokak Adresi
                 <input type="text" name="streetadress" defaultValue={medata.street} />
+                {state?.errors?.streetadress && <small style={{ color: "red" }}>{state.errors.streetadress}</small>}
               </label>
               <div className="citypostcountry">
                 <label htmlFor="city">Şehir
                   <input type="text" name="citypostcountry" defaultValue={medata.city} />
+                  {state?.errors?.city && <small style={{ color: "red" }}>{state.errors.city}</small>}
                 </label>
                 <label htmlFor="postcode">Posta Kodu
                   <input type="text" name="postcode" defaultValue={medata.postCode} />
+                  {state?.errors?.postcode && <small style={{ color: "red" }}>{state.errors.postcode}</small>}
                 </label>
                 <label htmlFor="country">Ülke
                   <input type="text" name="country" defaultValue={medata.country} />
+                  {state?.errors?.country && <small style={{ color: "red" }}>{state.errors.country}</small>}
                 </label>
               </div>
             </div>
 
             <div className="formsectionRow">
               <h4>Bill To</h4>
-              <label htmlFor="clientsname">Müşterinin Adı
-                <input type="text" name="clientsname" defaultValue={"19 Union Terrace"} />
+              <label htmlFor="clients">Müşterinin Adı
+                <input type="text" name="clients" defaultValue={"19 Union Terrace"} />
+                {state?.errors?.clients && <small style={{ color: "red" }}>{state.errors.clients}</small>}
               </label>
               <label htmlFor="clientemail">Müşterinin Epostası
                 <input type="text" name="clientemail" defaultValue={"London"} />
+                {state?.errors?.clientemail && <small style={{ color: "red" }}>{state.errors.clientemail}</small>}
               </label>
-              <label htmlFor="streetadress">Sokak Adresi
-                <input type="text" name="streetadress" defaultValue={"E1 3EZ"} />
+              <label htmlFor="tostreetadress">Sokak Adresi
+                <input type="text" name="tostreetadress" defaultValue={"E1 3EZ"} />
+                {state?.errors?.tostreetadress && <small style={{ color: "red" }}>{state.errors.streetadress}</small>}
               </label>
               <div className="citypostcountry">
-                <label htmlFor="city">Şehir
-                  <input type="text" name="citypostcountry" defaultValue={"London"} />
+                <label htmlFor="tocity">Şehir
+                  <input type="text" name="tocity" defaultValue={"London"} />
+                  {state?.errors?.tocity && <small style={{ color: "red" }}>{state.errors.tocity}</small>}
                 </label>
-                <label htmlFor="postcode">Posta Kodu
-                  <input type="text" name="postcode" defaultValue={"E1 3EZ"} />
+                <label htmlFor="topostcode">Posta Kodu
+                  <input type="text" name="topostcode" defaultValue={"E1 3EZ"} />
+                  {state?.errors?.topostcode && <small style={{ color: "red" }}>{state.errors.topostcode}</small>}
                 </label>
-                <label htmlFor="country">Ülke
-                  <input type="text" name="country" defaultValue={"United Kingdom"} />
+                <label htmlFor="tocountry">Ülke
+                  <input type="text" name="tocountry" defaultValue={"United Kingdom"} />
+                  {state?.errors?.tocountry && <small style={{ color: "red" }}>{state.errors.tocountry}</small>}
                 </label>
               </div>
               <div className="dateterms">
-                <label htmlFor="invoicedate">
+                <label htmlFor="invoicedate">Fatura Tarihi:
                   <input type="date" name="invoicedate" value={formatDate(datalist.invoiceDate)} />
+                  {state?.errors?.invoicedate && <small style={{ color: "red" }}>{state.errors.invoicedate}</small>}
                 </label>
-                <label htmlFor="invoiceterm">
+                <label htmlFor="invoiceterm">Ödeme Koşulları:
                   <select name="invoiceterm">
                     <option value="Net 1 Gün" selected>Net 1 Gün</option>
                     <option value="Net 7 Gün" >Net 7 Gün</option>
                     <option value="Net 14 Gün" >Net 14 Gün</option>
                     <option value="Net 30 Gün" >Net 30 Gün</option>
                   </select>
+                  {state?.errors?.invoiceterm && <small style={{ color: "red" }}>{state.errors.invoiceterm}</small>}
                 </label>
-              </div>
+              </div> <label htmlFor="description">Proje Açıklaması
+                <input type="text" name="description" defaultValue="test" />
+                {state?.errors?.description && <small style={{ color: "red" }}>{state.errors.description}</small>}
+              </label>
             </div>
 
             <div className="formsectionRow">
@@ -127,11 +153,11 @@ export default function NewInvoices({ medata, datalist }) {
                   <p>Fiyat</p>
                   <p>Toplam</p>
                 </div>
-                 
+
                 {
                   itemList && itemList.map((x, i) =>
                     <div className="featuresInputItem">
-                      <input type={x.text} placeholder={x.textplaceholder}/>
+                      <input type={x.text} placeholder={x.textplaceholder} />
                       <input type={x.number} placeholder={x.numberfirstplace} />
                       <input type={x.number} placeholder={x.numbersecond} />
                       <p></p>
