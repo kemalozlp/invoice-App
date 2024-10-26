@@ -1,5 +1,4 @@
 "use client"
-import {Spinner} from "@nextui-org/spinner";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import EditInvoices from "../../components/editinvoices/editinvoices";
@@ -56,7 +55,7 @@ export default function InvoicesDetail({ params }) {
       position:"absolute",
       top:"50%",
       left:"50%"
-    }}> <Spinner  label="Loading..." color="warning"  /></div>
+    }}> Yükleniyor...</div>
   }
 
 
